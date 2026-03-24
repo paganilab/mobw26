@@ -1,0 +1,17 @@
+,group,lib.size,norm.factors,FileName,ExternalSampleName,SampleGroup,Donor,sex
+BSSE_QGF_204446,1,40969678,1.02974247490289,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204446_STAR_hg38_ignoreDuplicates.bam,HD276_Trest,Trest,HD276,Male
+BSSE_QGF_204447,1,38734896,0.994070649080461,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204447_STAR_hg38_ignoreDuplicates.bam,HD276_Ttumor,Ttumor,HD276,Male
+BSSE_QGF_204448,1,57149808,0.939440046561302,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204448_STAR_hg38_ignoreDuplicates.bam,HD276_Teff,Teff,HD276,Male
+BSSE_QGF_204449,1,45415276,1.04552202534932,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204449_STAR_hg38_ignoreDuplicates.bam,HD276_Tex,Tex,HD276,Male
+BSSE_QGF_204450,1,51767738,0.992192455611188,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204450_STAR_hg38_ignoreDuplicates.bam,HD280_Trest,Trest,HD280,Male
+BSSE_QGF_204451,1,49277273,0.973416819872477,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204451_STAR_hg38_ignoreDuplicates.bam,HD280_Ttumor,Ttumor,HD280,Male
+BSSE_QGF_204452,1,50049428,1.00663310950385,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204452_STAR_hg38_ignoreDuplicates.bam,HD280_Teff,Teff,HD280,Male
+BSSE_QGF_204453,1,47970167,1.0135948118533,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204453_STAR_hg38_ignoreDuplicates.bam,HD280_Tex,Tex,HD280,Male
+BSSE_QGF_204458,1,39639302,1.02209294464595,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204458_STAR_hg38_ignoreDuplicates.bam,HD286_Trest,Trest,HD286,Male
+BSSE_QGF_204459,1,39564107,1.01099042749401,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204459_STAR_hg38_ignoreDuplicates.bam,HD286_Ttumor,Ttumor,HD286,Male
+BSSE_QGF_204460,1,36024389,0.989155163423026,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204460_STAR_hg38_ignoreDuplicates.bam,HD286_Teff,Teff,HD286,Male
+BSSE_QGF_204461,1,36061261,1.00959618043775,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204461_STAR_hg38_ignoreDuplicates.bam,HD286_Tex,Tex,HD286,Male
+BSSE_QGF_204462,1,40403507,1.0373847414374,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204462_STAR_hg38_ignoreDuplicates.bam,HD287_Trest,Trest,HD287,Female
+BSSE_QGF_204463,1,48346472,0.964603229394191,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204463_STAR_hg38_ignoreDuplicates.bam,HD287_Ttumor,Ttumor,HD287,Female
+BSSE_QGF_204464,1,52063234,0.997336025571851,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204464_STAR_hg38_ignoreDuplicates.bam,HD287_Teff,Teff,HD287,Female
+BSSE_QGF_204465,1,44708095,1.00304152753673,/scicore/home/zippeliu/GROUP/bioinfo/common_bam/BSSE_QGF_204465_STAR_hg38_ignoreDuplicates.bam,HD287_Tex,Tex,HD287,Female

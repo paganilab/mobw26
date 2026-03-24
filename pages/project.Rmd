@@ -1,0 +1,42 @@
+---
+title: "Project"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+editor_options: 
+  markdown: 
+    wrap: sentence
+code-block-border-left: true
+---
+
+```{r setup, include=FALSE}
+library(kableExtra)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
+```
+
+## Group Project Time! 🚀
+It's time to see how much you can take away from the concepts and the topics of the course! You are going to be working on **designing and constructing your own project**!
+
+## How does it work?
+You will have 5 minutes to organize into groups of approximately the same size, after that you will:
+
+1. Reflect on the Bachelor's thesis project among the ones in your group
+
+2. Select one project that in your opinion would **benefit the most from a bulk RNA-Seq experiment**
+
+3. Design your planned experiment by considering the following **key points**:
+    
+    - What is your biological question or **hypothesis**?
+    - What **experimental conditions** are required to test your hypothesis?
+    - How many biological/technical **replicates** are necessary for obtaining reliable results?
+    - Is your experiment well-designed, or are there potential **confounding factors**?
+    - What type of RNA **enrichment method** should you use?
+    - Based on the RNA type you want to analyze (mRNA, miRNA, lncRNA, etc.), do you need a stranded library preparation?
+    - What **read length**, **sequencing depth**, and **sequencing mode** are required for your analysis?
+    - If a bioinformatician will perform the analysis of your samples, what **metadata** should you provide to ensure a well-informed and accurate analysis?
+    - Do you believe incorporating the analysis of **other -OMICS** will enhance your experiment? If yes, which ones?
+
+4. Create a 2-3 slides presentation to communicate how you would go about planning your project! (_remember_: you are trying to convince your boss to spend a lot of 💸)
+
+5. Present your work! 

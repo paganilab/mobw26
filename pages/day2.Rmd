@@ -1,0 +1,567 @@
+---
+title: "Day 2"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+editor_options: 
+  markdown: 
+    wrap: sentence
+code-block-border-left: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
+```
+
+```{r, include=FALSE}
+library(kableExtra)
+library(dplyr)
+
+# Load the data again
+counts <- read.csv("../data/raw_counts.csv")
+samples <- read.csv("../data/samples_info.csv")
+
+# Process
+rownames(counts) <- counts$X
+counts$X <- NULL
+
+rownames(samples) <- samples$X
+samples <- samples[,c("Donor","SampleGroup","sex")]
+```
+
+## Objectives
+- _Learn about data normalization_
+- _Learn about the `edgeR` package_
+- _Explore different normalization methods_
+- _Normalize the data with functions provided by the `edgeR` package_
+- _Perform diagnostic and exploratory analysis on the data_
+- _Learn about the theory behind differential gene expression_
+- _Perform differential gene expression with `edgeR`_
+
+# Data Normalization for bulk RNA-seq
+## Why Do We Need It?
+Normalization is the process by which we try to **conform count data to make it comparable across samples and even across different genes**. This is done to ensure that all of the _uninteresting_ differences between genes are minimized in favor of the **_interesting_ biological differences** that we want to highlight.
+
+The main factors to take into account when normalizing data are:
+
++ **Sequencing Depth**:
+
+  
+<center>
+
+<img src="https://hbctraining.github.io/DGE_workshop/img/normalization_methods_depth.png" width=500 />
+  
+_**Differences in sequencing depth** (total number of reads in a sample) can cause genes to appear differentially expressed just due to technical reasons._
+
+</center>
+<div style="margin-bottom: 40px;"></div>
+
++ **Gene Length**:
+
+<center>
+
+<img src="https://hbctraining.github.io/DGE_workshop/img/normalization_methods_length.png" width=400 />
+  
+_Differences in gene length means that **longer genes are prone to have more reads** coming from them, therefore we need to normalize also for this aspect while processing data._
+
+</center>
+<div style="margin-bottom: 40px;"></div>
+
++ **RNA Composition**:
+
+<center>
+
+<img src="https://hbctraining.github.io/DGE_workshop/img/normalization_methods_composition.png" width=500 />
+  
+_Differences in RNA composition are also causative of technical artefacts which can skew the analyses. **Differences in the number of genes expressed between samples and the number of differentially expressed gene across samples can greatly and negatively impact normalization methods**. In the example, **the majority of counts for sample A is related to the DE gene and therefore this might cause other genes to be normalized by this high number of counts**, resulting in them appearing to be expressed at a lower level as opposed to the same genes in sample B._
+
+</center>
+
+## Normalization Strategies
+During the years, many approaches to data normalization have been attempted and are summarized in the table below. You can see that they try to tackle each one of the issues we highlighted above.
+
+| **Normalization Method** 	| **Accounted Factors** 	| **Description** 	|
+|---	|---	|---	|
+| **CPM (counts per million)** 	| Sequencing depth 	| Counts scaled by total read number 	|
+| **TPM (transcripts per million)** 	| Sequencing depth and gene length 	| Counts per length of transcript (kb) per million mapped reads 	|
+| **FPKM/RPKM** 	| Sequencing depth and gene length 	| Counts per kilobase of exon mapped reads per million mapped reads 	|
+| **_DESeq2_'s median of ratios**^[1](https://bioconductor.org/packages/release/bioc/html/DESeq2.html)^ 	| Sequencing depth and RNA composition 	| Counts are divided by a sample-specific size factor 	|
+| **_edgeR_'s trimmed mean of M values**^[2](https://bioconductor.org/packages/release/bioc/html/edgeR.html)^ 	| Sequencing depth, RNA composition and gene length 	| Weighted trimmed mean of the log ratio of expression between samples 	|
+
+Out of all these, we will use one of the more advanced ones provided in the `edgeR` package which will be now introduced.
+
+# The `edgeR` Package
+## Introduction
+One of the main interests behind performing a bulk RNA experiment is **understanding which genes are more or less expressed across a set of conditions of interest**, so we will **compare** gene expression levels and **statistically assess** and quantify differences arising between the conditions represented by our categories of samples. In this section we will start getting a feel for what the `edgeR` package is and **how to use it to perform normalization and differential expression analysis on our bulk RNA seq data**.
+
+> 💡
+> **Detailed explanations of the statistical procedures implemented in the package are available in the package's [_vignette_](https://bioconductor.org/packages/release/bioc/html/edgeR.html).** 
+
+We will start by **loading the package** that we installed in yesterday's initial "setup" section:
+
+```{r}
+# Load the package
+library(edgeR)
+```
+
+The package **contains many _functions_** which are very helpful when dealing with tables of _count data_, we can inspect them all by typing the following command:
+
+```{r}
+# This should open a popup window in the lower right part of the screen displaying the functions in the package
+??edgeR
+```
+
+In the sections below, we will **follow the standard analysis workflow** suggested by the `edgeR` developers.
+
+## Create a `DGEList` object
+In order for the package to _read_ and _understand_ our data and correctly perform the analysis, we need to **organize our data in a way that the functions of the package can handle**. This new object that we are going to create is called `DGEList` and there is a utility function to create one starting from the **ingredients** we currently have, (1) a **table of counts** (our `counts` object), (2) a **table with sample information** (our `samples` object). and (3) one last thing that we need to decide in order tell the package what comparisons we value the most, this is called a **design formula**.
+
+### Behind The Design Formula
+The design formula should **contain the name of a column of interest in our table of samples** which stores the information related to the **_levels_** (or _categories_) we want to contrast. Let's say that we have a dataset with two conditions (`condition_1` vs `condition_2`) that we want to compare. The samples table will look like this, with three replicates for each of the two conditions:
+
+| Sample Code 	| Patient 	| Condition 	|
+|---	|---	|---	|
+| SA1 	| Pt1 	| Condition_1 	|
+| SA2 	| Pt2 	| Condition_1 	|
+| SA3 	| Pt3 	| Condition_1 	|
+| SA4 	| Pt1 	| Condition_2 	|
+| SA5 	| Pt2 	| Condition_2 	|
+| SA6 	| Pt3 	| Condition_2 	|
+
+> #### Paired Analyses
+>The optimal setting for the analysis (decided experimentally) is to have **_paired samples_**. This might be a somewhat difficult concept to grasp, but for our table above this means that **every `Patient` contributes equally to the two categories in the `Condition` columns that we are interested in**. In this setting, we are fully capable of exploiting the statistics behind the tools we use for differential analysis by _correcting for the uninteresting differences arising between patients_. **This aspect greatly helps the analysis and improves the statistical validity of the results.**
+>
+>> 💡
+>> **Remember, this is something achieved by deciding the experimental setting beforehand! Ideally this should be done through a collaborative effort between bioinformaticians/statisticians and bench scientists!**
+
+If we are interested in performing a differential expression analysis comparing `condition_1` versus `condition_2`, then our design formula should specify the `Condition` column.
+
+> 💡
+> **What is the column that we are interested in when specifying the design formula using in our `samples` table?**
+
+Now that we also understand the design formula, we can create the `DGEList` object with the data that we loaded beforehand, but first we need to check that the columns of the `counts` table are in the same order of the rows of the `sample` table, this is important since **we want to be sure that the right levels of expression are associated to the right sample**.
+
+```{r}
+all(rownames(samples) == colnames(counts))
+```
+
+Now that we are sure about this aspect we can actually build the object:
+
+```{r}
+# Create a design formula
+donor <- samples$Donor
+sample_group <- factor(samples$SampleGroup, levels=c("Teff","Trest","Ttumor","Tex")) # Teff becomes our "control" group to which we compare the others
+
+design <- model.matrix(~ donor + sample_group)
+
+# Create a `DGEList` object and call it dds
+dds <- DGEList(counts = counts, 
+                samples = samples 
+                    )
+
+# Let's save the `design` in the dds object (remeber that `dds` is just a list in R which can be updated with different elements)
+dds$design <- design
+```
+
+We can now remove the `counts` table from our `R` environment since that information is stored in our `DGEList` object now. This is useful to save on memory space!
+
+```{r, eval=FALSE}
+# Remove original `counts` table to save memory space
+rm(counts)
+gc()
+```
+
+Great! **You have created a `DGEList` object which we called `dds`**, this contains all the information related to the counts table and the sample information table in one spot. We can **have a look at the sample information table and the counts table in the `dds` object like so**:
+
+```{r, eval=FALSE}
+# Look at the table with sample information
+head(dds$samples)
+```
+
+```{r, echo=FALSE}
+# Look at the table with sample information
+head(dds$samples) %>% kbl() %>% kable_styling()
+```
+
+We can see that **some new columns were added to the `samples` table present in our `DGEList` object** when we created it (the `group`, `lib.size`, `norm.factors` columns)! These will be used by `edgeR` later on for data normalization!
+
+We can also take a look at the table containing the counts, which is just another element of our `DGEList` object:
+
+```{r, eval=FALSE}
+# Look at the table with count information
+head(dds$counts)
+```
+
+```{r, echo=FALSE}
+# Look at the table with count information
+head(dds$counts) %>% kbl() %>% kable_styling()
+```
+
+## Filtering genes
+We can the **inspect the size of our `dds` object to check how many genes and samples we have**, you can see that this mirrors exactly the `counts` table that we had previously, before incorporating it into the object.
+
+```{r}
+dim(dds$counts)
+```
+
+> 💡
+> **In `R`, list elements are accessible with the `$` accessor. Our `dds` object is indeed a list made up of three elements, the `counts` table, the `samples` table and the `design` table, these are accessible using `$` like we did above.** 
+
+Now we can **start removing some genes which are expressed at low levels**. This action is justified both from the biological and the statistical points of view. Biologically, lowly expressed genes are less interesting while statistically, they do not provide enough sampling power to confidently test them for differential expression. In the following chunk we filter our `dds` object by **keeping only genes (rows) which have at least 10 detected counts in each sample** using the `filterByExpr()` function in the `edgeR` package.
+
+```{r}
+# Select which genes to keep
+keep <- filterByExpr(dds, design)
+
+# Filter
+dds <- dds[keep, , keep.lib.sizes=FALSE]
+```
+
+> 💡
+> **This is somewhat of an "easy" filtering strategy, there are many more complex ones available but sometimes it's best to keep things simple!**
+
+Let's check how many genes we're left with **after filtering**:
+
+```{r}
+dim(dds$counts)
+```
+
+You can see that **we have cut the number of genes in our dataset by more than half**, now we have **`r nrow(dds$counts)` remaining genes**.
+
+## Normalizing Count Data
+As we have discussed above, **normalization is an integral step to the downstream analysis of bulk RNA-seq data**. In this section we will normalize our data using the `calcNormFactors` function of the package. As we have previously introduced, `edgeR` uses the **trimmed mean of M-values (TMM)** method to calculate a **set of size factors** to _minimize the log-fold change_ differences occurring between samples (uninteresting) for the majority of genes. The counts for each sample get then multiplied by the scaling factors to generate what is referred to as **_effective library size_**, which will be used for all downstream analyses.
+
+```{r}
+# Call the function to normalize count data
+dds <- calcNormFactors(dds)
+```
+
+We can check the values of the computed **size factors** by doing the following, note how **there are as many size factors as there are samples** and they are inserted in a column of the `samples` table named `norm.factors` in our `DGEList` object:
+
+```{r, eval=FALSE}
+dds$samples
+```
+
+```{r, echo=FALSE}
+dds$samples %>% kbl() %>% kable_styling()
+```
+
+### Visualizing the relationshhip between library size and size factors
+We can explore the relationship between the total library size for each of our samples and their respective `norm.factors` to understand what the purpose of the size factors is! Since we are going to use the factors balance differences of counts, we expect a positive relationship between the total number of counts in a sample and its estimated `norm.factors`.
+
+```{r}
+# Plot relationship
+library(ggplot2)
+
+dds$samples %>% ggplot(.,aes(x = norm.factors, y = lib.size, color=SampleGroup)) + 
+      geom_point(size=8, alpha=0.7)+
+      ggtitle("Relationship between Normalization Factors and Library Size") + 
+      theme_classic() +
+      theme(plot.title = element_text(hjust = 0.5)) 
+```
+
+> 💡
+> **NOTE**: Although `edgeR` does not use normalized counts as input (the normalization process happens inside automatically), the normalized counts we just generated are definitely useful when plotting results and performing clustering.
+
+## Transforming Count Data
+After we have normalized our data, we need to perform a **transformation**. There are many ways to transform count data but all of them achieve the goal of removing the gene-wise **dependence between _variance_ and _mean_ of expression values** across samples (something called [_homoscedasticity_](https://en.wikipedia.org/wiki/Homoscedasticity_and_heteroscedasticity)) in order to highlight interesting and biologically relevant expression trends even for genes expressed at lower values.
+We transform the data using a function provided in the `edgeR` package called `cpm()` which also performs a **logarithmic transformation** which has the effect of _reshaping_ the data to achieve gene-wise distributions which resemble a _normal_ distribution. Without getting too much into the details of the workings of the function, **we will transform the data and then look at how the gene-wise relationship between the _mean_ and _variance_ in our normalized data changes before and after the transformation**. The purpose of this procedure is to allow proper data visualization later in the analysis, **the transformed data is NOT used for the differential expression analysis which instead starts from raw counts!**
+
+The following code is used to plot the _mean/standard deviation relationship_ of every gene **before the transformation**.
+
+```{r}
+library(vsn)
+
+# Plot before data transformation
+meanSdPlot(dds$counts)
+```
+
+Transform the data and then plot the mean/standard deviation relationship **after the transformation**.
+
+```{r}
+# Transform the data with a log2 transform (watch how we create a new variable for it)
+log2dds <- cpm(dds, log=TRUE)
+```
+
+```{r, eval=FALSE}
+# Check out the transformed values (notice how we now have floating point values and some are even negative!)
+head(log2dds)
+```
+
+```{r, echo=FALSE}
+head(log2dds, 10) %>% kbl() %>% kable_styling()
+```
+
+```{r}
+# let's plot the transformed values
+meanSdPlot(log2dds)
+```
+
+> 💡
+> **It is clear how genes with high mean expression values (on the right) are now comparable in terms of standard deviation to genes with lower mean expression values (on the left).**
+
+## Data Quality Visual Assessment
+One way to understand trends in our data and the presence of poor quality or **_outlier_** samples is to perform exploratory analyses through visualization. In `R` in general, **data visualization is aided by the presence of many packages** (on top the basic plotting functionality) which can handle diverse kinds of data visualization tasks (from traditional plots to **visualizing tabular data through heatmaps**). We will encounter two of these packages, one is [`ggplot2`](https://ggplot2.tidyverse.org/) and the other one is [`pheatmap`](https://cran.r-project.org/web/packages/pheatmap/index.html). 
+
+### Clustering
+One of the main strategies for checking the consistency of our dataset is to **cluster samples based on their complete expression profile** (which as you might recall consists of `r dim(dds$counts)[1]` genes in our dataset). This will allow us to **spot the presence of _outliers_ in the data** and **look for consistent profiles of gene expression across replicates**, which we expect. Use the code below to **plot a _heatmap_ of normalized (and transformed) expression values** for our samples. Since plotting the full expression table can be computationally expensive, we might want to subset it to the 400 top expressed genes in the dataset.
+
+```{r}
+library("pheatmap")
+
+# Take the top 200 genes in the dataset
+select <- order(rowMeans(log2dds),
+                decreasing=TRUE)[1:400] # Select number of genes
+
+# Create another table for annotating the heatmap with colors
+df <- as.data.frame(samples[,c("Donor","SampleGroup")])
+
+# Draw the heatmap using the `pheatmap` package
+pheatmap(log2dds[select,], cluster_rows=FALSE, show_rownames=FALSE,
+         cluster_cols=TRUE, annotation_col=df)
+```
+
+> 💡
+> **What type of assessment would you make about the consistency of the samples across these top 400 genes? Do they cluster (a synonym for _similar_) based on the donor or on the biological condition of our interest?**
+
+### Sample-to-sample Distances
+Another way to **get a sense of the global relationship between samples** is to check for how _distant_ samples are between themselves. This analysis of **_pairwise_ distances** looks at the expression value of all `r nrow(dds$counts)` genes in the dataset and determines which samples have a more or less similar or different expression value for each. **We expect biologically similar samples to have very little difference**.
+
+```{r}
+library(RColorBrewer)
+
+# Compute distances
+sampleDists <- dist(t(log2dds))
+
+# Organize
+sampleDistMatrix <- as.matrix(sampleDists)
+
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+
+# Plot with `pheatmap`
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         color = colors,
+         annotation_col = df)
+```
+
+```{r, eval=FALSE}
+# Free up memory space
+rm(sampleDistMatrix)
+gc()
+```
+
+> 💡
+> **What type of assessment would you make about the heatmap you just produced? Which CD8 T-cell populations are mostly similar in terms of overall gene expression profile? Does a particular population stand out?**
+
+### Principal Component Analysis (PCA)
+Another useful approach for **understanding the main variability axes in our data** is to compute and plot a **[PCA](https://en.wikipedia.org/wiki/Principal_component_analysis)**. Without getting into the details, PCA takes our expression data and outputs its **principal components**, which encode the **_main sources of variability in the data_**. Ideally, **we want the samples to have variability caused by the biological effect of our interest** (in this case the differences between CD8 T-cell populations), but this might not be the case. By plotting and coloring the points by different **_covariates_** (i.e. donor or cell type) we are able to understand where the variability comes from and if there is any detectable **[batch effect](https://en.wikipedia.org/wiki/Batch_effect)**. Use the code below to generate a _scatter plot_ of PCA coordinates and color them to understand what causes the variability in the data.
+
+```{r}
+library(ggplot2)
+
+# Calculate principal components and percentage of variance
+pcs <- prcomp(log2dds, scale = TRUE)
+percentVar <- round(100 * summary(pcs)$importance[2,])
+pcaData <- as.data.frame(pcs$rotation) %>% merge(samples, by=0)
+
+# Plot (this time with ggplot2!!)
+ggplot(pcaData, aes(PC1, PC2, color=SampleGroup, shape=Donor)) +
+  geom_point(size=3) +
+  xlab(paste0("PC1: ",percentVar[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
+  theme_classic()
+```
+
+> 💡
+> **What can you say about this PCA? Are the samples positioning themselves based on the donor or their biological condition? What is the most extreme group of samples? How does this information relate to the other plots we produced above?**
+
+```{r, eval=FALSE}
+# Let's clean some space up!
+rm(pcs)
+rm(pcaData)
+rm(log2dds)
+gc()
+```
+
+Now that we have plotted all the main diagnostic information related to the dataset and we have a bit of a grasp of it, we can start thinking about **testing for differentially expressed genes**.
+
+
+```{r, include=FALSE}
+library(kableExtra)
+library(tidyr)
+library(dplyr)
+library(edgeR)
+library(pheatmap)
+library(ggplot2)
+
+# Load the data again
+dds <- readRDS("../data/dds_object.rds")
+
+samples <- read.csv("../data/samples_info.csv")
+rownames(samples) <- samples$X
+samples <- samples[,c("Donor","SampleGroup","sex")]
+
+# Re-create design
+donor <- samples$Donor
+sample_group <- factor(samples$SampleGroup, levels=c("Teff","Trest","Ttumor","Tex")) # Teff becomes our "control" group to which we compare the others
+
+design <- model.matrix(~ donor + sample_group)
+```
+
+## Differential Expression Analysis
+
+> 🤔 At this point we should remind ourselves of _why_ we decided to perform an RNA-seq experiment, do you remember?
+
+The main purpose of the steps we performed previously is to **get to this point with a fair knowledge of the data at hand**, all the steps have to be repeated each time one starts with some fresh new data (no data is the same!!).
+Now we can start performing **differential expression analysis** with the `edgeR` package.
+The main concept behind it is to **contrast two categories of our interest in the data (i.e. CD8+ T~ex~ vs CD8+ T~rest~) and check which genes are predominantly (defined in a *statistical sense*) expressed in one category as opposed to the other**.
+As introduced previously, we tell `edgeR` which comparisons to perform through the **design formula** we specified above when we created our `DGEList` object `dds`. We can recap the design formula that we specified.
+
+```{r, eval=FALSE}
+# Check out the design formula we specified (do not copy this, you should have it in your variable `design`)
+~ Donor + SampleGroup
+```
+
+With that design formula we are telling the software that **we are interested in checking for the gene expression differences happening between the categories present in the `SampleGroup` column** of our `samples` table **while simultaneously correcting for the possible uninteresting differences that can arise across different donors**, whose information is stored in the `Donor` column of the `samples` table which we can check out below. The `Donor` therefore represents our batch whose effect we are trying to correct for.
+
+```{r, echo=FALSE}
+head(samples[,c("Donor","SampleGroup")]) %>% kbl() %>% kable_styling()
+```
+
+The categories are exactly the ones we have been plotting all along up to this point (the different CD8+ T-cell types).
+
+> 💡 **Given that we have four differences categories (these are also called `levels` in `R`) in our `SampleGroup` column (which can also be called a `factor` in `R`), `edgeR` could perform different comparisons since these are _pairwise_.**
+> **We need to keep in mind that our reference values are referred to the CD8+ T~eff~ group!**
+
+### The Main `edgeR` Function
+
+Let's perform differential expression analysis with `edgeR` on our dataset using the main function for the task in the package, `glmTest()`. Without going into the mathematical details, this function fits a **[generalized linear model (GLM)](https://en.wikipedia.org/wiki/Generalized_linear_model)** to the data in order to perform inference and **decide which genes are _statistically_ up- or down-regulated**.
+We first need to compute gene-wise dispersion estimate with the function `estimateDisp()`. These are needed by the model in order for its underlying assumptions to hold true. We can visually inspect the fit of the dispersion estimates below.
+
+```{r}
+# First we fit gene-wise dispersion estimates to accomodate the theoretical assumptions of the model
+dds <- estimateDisp(dds, design, robust=TRUE)
+
+# Plot the fitted dispersion values
+plotBCV(dds)
+```
+
+From the dispersion estimate we can see that we are capturing and modelling efficiently the gene-wise dispersion in the dataset which is intrinsically present due to variation. This variation is quantified in `edgeR` with a **BCV** or a _*B*iological *C*oefficient of *V*ariation_ which **takes into account both unwanted biological variability (specified in the design) and technical variation**.
+
+```{r}
+# Fit the GLM
+fit <- glmFit(dds, design)
+
+# Perform differential expression testing given the design formula we wrote previously
+lrt <- glmLRT(fit, coef=7)
+```
+
+**Notice how we did not use the transformed version of the dataset (`log2dds`) but we started from the object `dds`**.
+As previously mentioned, the package needs to start from **raw count data** to correctly assess differences in gene expression.
+
+**Let's say that we are very interested in the differences occurring between CD8+ T~ex~ and CD8+ T~eff~ cells.**
+The reason why we specified `coef=7` in the code above is explained by how `edgeR` interprets the **`design` matrix** that we built previously, which specifies the kinds of comparison to make. If we take a look at it we can see how the **_7th_ column is the one related to the T~ex~ group**, the one we want to **compare against our reference group T~eff~**.
+
+```{r, eval=FALSE}
+head(design, 4)
+```
+
+```{r, echo=FALSE}
+design %>% kbl() %>% kable_styling()
+```
+
+> 💡
+> **In GLMs, design matrices are built to communicate the way we want to _model_ samples when testing for gene expression differences. Some packages keep this aspect less exposed than other to allow users which are less familiar with the mathematical concepts to still use the package. Often, better knowledge allows better control and flexibility over what we do, at the cost of greater responsibility!**
+
+### Exploring Results
+
+After having used the main `edgeR` function, we can actively explore the results of the analysis for the comparisons of our interest.
+For example we might want to check if any gene is *up-regulated* during the process of CD8+ T-cell exhaustion. We can later filter the results based adjusted *P*-value used to **accept or reject the null hypothesis** ($H_{0}$) of a gene NOT being differentially expressed between the two conditions.
+
+With the code below we can extract a table that we call `res` which contains the results for every single gene, stored in separate rows.
+
+```{r}
+# Extract the results
+res <- as.data.frame(lrt$table)
+```
+
+We can now **check out our results object**, which will be a `data.frame`, a table.
+
+```{r, eval=FALSE}
+# Check out results object
+head(res, 10)
+```
+
+```{r, echo=FALSE}
+res %>% drop_na() %>% head(10) %>% kbl() %>% kable_styling()
+```
+
+We can additionally **print out a summary of the results of the differential analysis at a _P_-value < 0.05** by using the following code:
+
+```{r}
+summary(decideTests(lrt))
+```
+
+In here we can see the type of comparison we are performing (vs the reference, in our case CD8+ T~eff~ cells), the *P*-value threshold we used and the number of **up-regulated** and **down-regulated** genes at varying [*log*-fold change](https://en.wikipedia.org/wiki/Fold_change) levels, keep in mind that a log-fold change of 1 corresponds to a difference in raw gene expression value of 2 times since the *log* has a base of 2.
+So, to recap, **all of the genes with log-fold change of 1 or more are twice as expressed in one condition compared to the other and we will later filter genes based on the fold-change value**.
+
+### Visualizing Results With MD Plots
+**MD plots are used to get a sense of the proportions of up- and down-regulated genes** between two conditions and the number of counts per million (CPM) of each gene, to check if genes with higher counts are statistically preferred to be also differential.
+
+```{r}
+# Plot the MD Plot
+plotMD(lrt)
+abline(h=c(-1, 1), col="gray")
+```
+
+With the gray line we indicate a fold-change of +/- 1 which, if you recall, stands for an **actual magnitude of change of value 2**.
+
+### Saving Results 
+Let's **save the results object we just generated in a `.csv` file**.  We can then source it back and load it into the session using the code we have seen at the end of the first day of the workshop.
+
+```{r, eval=FALSE}
+# Save the results object
+write.table(res, "results.csv", sep=",", quote = F)
+```
+
+```{r, echo=FALSE}
+# Save the results object
+write.table(res, "../data/results.csv", sep=",", quote = F)
+```
+
+In the code below, we will create two new tables with the genes that were up-regulated and down-regulated in the comparison we performed, we will use these later.
+
+```{r}
+# Extract the information related to up-regulated and down-regulated genes
+up_df <- res %>% as.data.frame() %>% filter(PValue < 0.05 & logFC > 1)
+down_df <- res %>% as.data.frame() %>% filter(PValue < 0.05 & logFC < -1)
+```
+
+If we **check the table with the up-regulated genes** we can see it has the following structure (we just took some specific rows - *genes* - of the complete results table corresponding to up-regulated genes):
+
+```{r, eval=FALSE}
+head(up_df, 4)
+```
+
+```{r, echo=FALSE}
+head(up_df, 4) %>% kbl() %>% kable_styling()
+```
+
+> 💡 
+> **How would you check if the dimensions of the tables we extracted correspond to the number of differentially expressed genes present in the summary we printed above? (hint: _go back and look at how we checked for the number of rows and columns in a table_)**
+
+
+# Recap
+Let's go through what we have seen so far:
+
+- Learned about the possible effects of sequencing artefacts...
+- ...and the necessity to _normalize_ data for quantitative analysis
+- Used the `edgeR` package to normalize the data
+- Learned the concept of _design formula_ and how it relates to the actual experimental design
+- Performed a visual inspection of the data and learned to explore sample-to-sample relationships
+- Learned about Differential Expression Analysis and what it is used for
+- We performed the analysis on our CD8+ T cell dataset
+- Managed to extract differentially-expressed genes

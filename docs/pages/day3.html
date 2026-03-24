@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Day 3 – 2026 Bioinformatics Workshop</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href=".././pics/net_icon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-20d5c32ef87b68b8f8983488454adb57.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../site_libs/d3-4.9.1/d3.min.js"></script>
+<script src="../site_libs/forceNetwork-binding-0.4.1/forceNetwork.js"></script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src=".././pics/net_icon.png" alt="" class="navbar-logo light-content">
+    <img src=".././pics/net_icon.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">2026 Bioinformatics Workshop</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/preface.html"> 
+<span class="menu-text">Preface</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/day1.html"> 
+<span class="menu-text">Day 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/help.html"> 
+<span class="menu-text">Help</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/paganilab"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LabPagani"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#visualizing-results-with-volcano-plots" id="toc-visualizing-results-with-volcano-plots" class="nav-link active" data-scroll-target="#visualizing-results-with-volcano-plots">Visualizing Results With Volcano Plots</a></li>
+  <li><a href="#mapping-ids-to-gene-symbols" id="toc-mapping-ids-to-gene-symbols" class="nav-link" data-scroll-target="#mapping-ids-to-gene-symbols">Mapping IDs to Gene Symbols</a></li>
+  <li><a href="#visualizing-results-with-heatmaps" id="toc-visualizing-results-with-heatmaps" class="nav-link" data-scroll-target="#visualizing-results-with-heatmaps">Visualizing Results With Heatmaps</a></li>
+  <li><a href="#plot-single-genes-across-samples" id="toc-plot-single-genes-across-samples" class="nav-link" data-scroll-target="#plot-single-genes-across-samples">Plot single genes across samples</a></li>
+  <li><a href="#further-downstream-analyses" id="toc-further-downstream-analyses" class="nav-link" data-scroll-target="#further-downstream-analyses">Further Downstream Analyses</a>
+  <ul class="collapse">
+  <li><a href="#gsea" id="toc-gsea" class="nav-link" data-scroll-target="#gsea">GSEA</a></li>
+  <li><a href="#gene-ontology-enrichment-analysis" id="toc-gene-ontology-enrichment-analysis" class="nav-link" data-scroll-target="#gene-ontology-enrichment-analysis">Gene Ontology Enrichment Analysis</a></li>
+  <li><a href="#gene-regulatory-network-inference" id="toc-gene-regulatory-network-inference" class="nav-link" data-scroll-target="#gene-regulatory-network-inference">Gene Regulatory Network inference</a></li>
+  </ul></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#take-home-messages" id="toc-take-home-messages" class="nav-link" data-scroll-target="#take-home-messages">Take-home Messages 🏠</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Day 3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="visualizing-results-with-volcano-plots" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-results-with-volcano-plots">Visualizing Results With Volcano Plots</h3>
+<p>Once we have our results from the comparison, we might want to <strong>present them graphically to aid their interpretation by other people or to emphasize messages of interest within them</strong> (like the statistics only for some genes of interest). One way to visualize results from a differential expression analysis is to draw a <a href="https://en.wikipedia.org/wiki/Volcano_plot_(statistics)"><strong>volcano plot</strong></a>. The goal of a volcano plot is to display and summarize the main metrics of output from a differential expression analysis, these consist of <strong><em>P</em>-values</strong> and <strong>log-fold changes</strong> associated with each gene in the dataset <strong>for the specific comparison we are performing</strong> (T<sub>ex</sub> vs T<sub>eff</sub> in our case). These two variables can be plotted together to get a feel for the overall results in the analysis. Let’s plot a volcano summarizing the results of the comparison we have performed.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the threshold just for visualization!</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>log2FC_val <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>padj_val <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table with gene information</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>volcano_corr <span class="ot">=</span> <span class="fu">as.data.frame</span>(res) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">names=</span><span class="fu">rownames</span>(res)) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a separate column in the table with the information needed to color point in three categories</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>volcano_corr<span class="sc">$</span>threshold<span class="ot">=</span><span class="fu">ifelse</span>(volcano_corr<span class="sc">$</span>logFC <span class="sc">&gt;=</span> log2FC_val <span class="sc">&amp;</span> volcano_corr<span class="sc">$</span>PValue <span class="sc">&lt;</span> padj_val,<span class="st">"A"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">ifelse</span>(volcano_corr<span class="sc">$</span>logFC <span class="sc">&lt;=</span> <span class="sc">-</span>log2FC_val <span class="sc">&amp;</span> volcano_corr<span class="sc">$</span>PValue <span class="sc">&lt;</span> padj_val, <span class="st">"B"</span>,<span class="st">"C"</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot!</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(volcano_corr, <span class="fu">aes</span>(<span class="at">x=</span>logFC, <span class="at">y =</span><span class="sc">-</span><span class="fu">log10</span>(PValue), <span class="at">color=</span>threshold)) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>( <span class="st">"B"</span><span class="ot">=</span><span class="st">"#3891A6"</span>,<span class="st">"A"</span><span class="ot">=</span><span class="st">"#C52233"</span>, <span class="st">"C"</span><span class="ot">=</span><span class="st">"grey"</span>)) <span class="sc">+</span> </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"log2(Fold Change)"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"-log10(adj p-value)"</span>) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>, <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">17</span>),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">0</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">17</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>               <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mapping-ids-to-gene-symbols" class="level3">
+<h3 class="anchored" data-anchor-id="mapping-ids-to-gene-symbols">Mapping IDs to Gene Symbols</h3>
+<p>The volcano plot above is <strong>nice but it is not so informative since we cannot see any gene name</strong>! Unfortunately we do not have recognizable gene names in the <code>res</code> object, as we can see below:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In this case gene names are the names of the rows of our table</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(res)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ENSG00000182888" "ENSG00000286431" "ENSG00000101846" "ENSG00000285679"
+ [5] "ENSG00000101849" "ENSG00000047644" "ENSG00000004961" "ENSG00000005302"
+ [9] "ENSG00000101911" "ENSG00000229083" "ENSG00000205542" "ENSG00000261030"
+[13] "ENSG00000226985" "ENSG00000198759" "ENSG00000176896" "ENSG00000123595"
+[17] "ENSG00000046651" "ENSG00000289449" "ENSG00000233247" "ENSG00000130150"</code></pre>
+</div>
+</div>
+<p>We can see that we currently have <a href="https://www.ebi.ac.uk/training/online/courses/ensembl-browsing-genomes/navigating-ensembl/investigating-a-gene/">Ensembl Gene IDs</a> as opposed to <strong>gene symbols</strong>! We can fix this by <strong>converting between the two, this can be achieved in R through dedicated packages like <a href="https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html"><code>org.Hs.eg.db</code></a></strong> which map between the two types of gene identifiers. Let’s do it using the code below.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the package for the conversion between Ensembl IDs and Gene Symbols</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>volcano_corr<span class="sc">$</span>gene_names <span class="ot">&lt;-</span> <span class="fu">mapIds</span>(org.Hs.eg.db, <span class="at">keys=</span><span class="fu">row.names</span>(volcano_corr), <span class="at">column=</span><span class="st">"SYMBOL"</span>, <span class="at">keytype=</span><span class="st">"ENSEMBL"</span>, <span class="at">multiVals=</span><span class="st">"first"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can check that <strong>we now have new mapped gene symbols</strong> that we can use to make our volcano plot informative!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>volcano_corr<span class="sc">$</span>gene_names[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>] </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "RPS27AP20" NA          "STS"       NA          "TBL1X"     "WWC3"     
+ [7] "HCCS"      "MSL3"      "PRPS2"     NA          "TMSB4X"    NA         
+[13] "LINC01203" "EGFL6"     "TCEANC"    "RAB9A"     "OFD1"      NA         
+[19] NA          "MOSPD2"    NA          "CA5B"      "ZRSR2"     NA         
+[25] "SYAP1"     "TXLNG"     "NHS"       "SCML1"     "CDKL5"     NA         
+[31] NA          "PDHA1"     "CNKSR2"    "MBTPS2"    "YY2"       "SMS"      
+[37] "PHEX"      NA          "PRDX4"     "SAT1"     </code></pre>
+</div>
+</div>
+<p>And finally we can try to plot again our volcano with the addition of gene names!</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>volcano_corr <span class="ot">&lt;-</span> volcano_corr[<span class="fu">order</span>(volcano_corr<span class="sc">$</span>PValue, <span class="at">decreasing =</span> <span class="cn">FALSE</span>),] <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>names_list <span class="ot">&lt;-</span> <span class="fu">c</span>(volcano_corr<span class="sc">$</span>gene_names[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="st">"TOX"</span>, <span class="st">"ENTPD1"</span>, <span class="st">"HAVCR2"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>neg_fc <span class="ot">&lt;-</span> volcano_corr[<span class="fu">order</span>(volcano_corr<span class="sc">$</span>logFC, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),] <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PValue <span class="sc">&lt;</span> <span class="fl">0.05</span> ) <span class="sc">%&gt;%</span> .<span class="sc">$</span>gene_names <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>) <span class="co"># Change these numbers to avoid overcrowding in the plot</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>pos_fc <span class="ot">&lt;-</span> volcano_corr[<span class="fu">order</span>(volcano_corr<span class="sc">$</span>logFC, <span class="at">decreasing =</span> <span class="cn">FALSE</span>),] <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PValue <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span> .<span class="sc">$</span>gene_names <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>names_list <span class="ot">&lt;-</span> <span class="fu">c</span>(names_list, neg_fc, pos_fc)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>volcano_corr <span class="ot">&lt;-</span> volcano_corr <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(., <span class="at">stroke =</span> <span class="fu">ifelse</span>(.<span class="sc">$</span>gene_names <span class="sc">%in%</span> names_list <span class="sc">&amp;</span> volcano_corr<span class="sc">$</span>PValue <span class="sc">&lt;</span> padj_val <span class="sc">&amp;</span> volcano_corr<span class="sc">$</span>logFC <span class="sc">&gt;</span> log2FC_val, <span class="dv">2</span>, <span class="dv">0</span>), </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">names=</span><span class="fu">ifelse</span>(.<span class="sc">$</span>gene_names <span class="sc">%in%</span> names_list,<span class="st">'mark'</span>,<span class="st">'leave'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                                                    .[<span class="fu">order</span>(.<span class="sc">$</span>names),]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(volcano_corr, <span class="fu">aes</span>(<span class="at">x=</span>logFC, <span class="at">y =</span><span class="sc">-</span><span class="fu">log10</span>(PValue), <span class="at">color=</span>threshold)) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>( <span class="st">"B"</span><span class="ot">=</span><span class="st">"#3891A6"</span>,<span class="st">"A"</span><span class="ot">=</span><span class="st">"#C52233"</span>, <span class="st">"C"</span><span class="ot">=</span><span class="st">"grey"</span>)) <span class="sc">+</span> </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">"log2(Fold Change)"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"-log10(adj p-value)"</span>) <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>, <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">17</span>),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">0</span>),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">17</span>),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>               <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>)) <span class="sc">+</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label_repel</span>(<span class="at">data=</span>volcano_corr[<span class="fu">which</span>(volcano_corr<span class="sc">$</span>names<span class="sc">==</span><span class="st">'mark'</span> <span class="sc">&amp;</span> volcano_corr<span class="sc">$</span>threshold<span class="sc">==</span><span class="st">'A'</span>),], <span class="fu">aes</span>(<span class="at">label=</span>gene_names), <span class="at">max.overlaps =</span> <span class="dv">30</span>, <span class="at">color=</span><span class="st">'black'</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">fill=</span><span class="st">'white'</span>, <span class="at">fontface=</span><span class="st">'italic'</span>) <span class="sc">+</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_label_repel</span>(<span class="at">data=</span>volcano_corr[<span class="fu">which</span>(volcano_corr<span class="sc">$</span>names<span class="sc">==</span><span class="st">'mark'</span> <span class="sc">&amp;</span> volcano_corr<span class="sc">$</span>threshold<span class="sc">==</span><span class="st">'B'</span>),], <span class="fu">aes</span>(<span class="at">label=</span>gene_names), <span class="at">max.overlaps =</span> <span class="dv">30</span>, <span class="at">color=</span><span class="st">'black'</span>, <span class="at">size=</span><span class="dv">4</span>, <span class="at">fill=</span><span class="st">'white'</span>, <span class="at">fontface=</span><span class="st">'italic'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-results-with-heatmaps" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-results-with-heatmaps">Visualizing Results With Heatmaps</h3>
+<p>We can also <strong>plot differentially expressed genes in the two conditions of our interest using heatmaps</strong>. In this case we select genes based on their significance and visualize how their expression values change across samples just like we have done earlier.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select conditions to plot, since we are plotting differentially expressed genes, we need to select the two categories in the comparison</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>conds <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Tex"</span>,<span class="st">"Teff"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take genes</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>diffs <span class="ot">&lt;-</span> <span class="fu">rbind</span>(volcano_corr[volcano_corr<span class="sc">$</span>threshold <span class="sc">==</span> <span class="st">"A"</span>,], volcano_corr[volcano_corr<span class="sc">$</span>threshold <span class="sc">==</span> <span class="st">"B"</span>,])<span class="sc">$</span>gene_names</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract counts from `dds` object</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>mtx <span class="ot">&lt;-</span> <span class="fu">cpm</span>(dds)[,<span class="fu">rownames</span>(samples[<span class="fu">which</span>(samples<span class="sc">$</span>SampleGroup <span class="sc">%in%</span> conds),])]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset for differential genes </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">&lt;-</span> <span class="fu">rownames</span>(volcano_corr[<span class="fu">which</span>(volcano_corr<span class="sc">$</span>gene_names <span class="sc">%in%</span> diffs),])</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset matrix for genes of interest</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>mtx <span class="ot">&lt;-</span> mtx[ids,]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create another table for annotating the heatmap with colors</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(samples[,<span class="fu">c</span>(<span class="st">"Donor"</span>,<span class="st">"SampleGroup"</span>)])</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with pheatmap</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(mtx, <span class="at">cluster_rows=</span><span class="cn">TRUE</span>, <span class="at">show_rownames=</span><span class="cn">FALSE</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">cluster_cols=</span><span class="cn">TRUE</span>, <span class="at">annotation_col=</span>df[<span class="fu">which</span>(<span class="fu">rownames</span>(df) <span class="sc">%in%</span> <span class="fu">colnames</span>(mtx)),], <span class="at">scale =</span> <span class="st">"row"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Given that the number of differentially expressed genes can sometimes be very high, <strong>we cannot pretend to explore them manually one by one understanding their function</strong>! As we will see, there are further downstream analyses we can perform to get a sense of <strong><em>trends</em></strong> and <strong><em>pathways</em></strong> activated in the cell type of our interest. These analyses which look at genes in groups or <strong>ontologies</strong> try to match conditions with functions, to better elucidate what is going on inside cells in a specific condition.</p>
+</section>
+<section id="plot-single-genes-across-samples" class="level3">
+<h3 class="anchored" data-anchor-id="plot-single-genes-across-samples">Plot single genes across samples</h3>
+<p>Here we can plot the expression values of single genes to directly inspect the results of the differential gene expression analysis. Since we are dealing with multiple samples for which a measurement of gene expression has been performed, we are plotting each sample colored by its original category to understand the trends that we detect from the global differential gene expression analysis!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a set of genes to plot</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gnames_to_plot <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"CD8A"</span>, <span class="co"># Should not differ</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"TOX"</span>, <span class="co"># Previously associated with T cell exhaustion</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"GNLY"</span>, <span class="co"># Previously associated to T effector function</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"IL7R"</span> <span class="co"># Previously associated to T memory function</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                    ) </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot as a grouped boxplot with jittering</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>pldf <span class="ot">&lt;-</span> <span class="fu">cpm</span>(dds, <span class="at">log=</span><span class="cn">TRUE</span>)[<span class="fu">rownames</span>(volcano_corr[<span class="fu">which</span>(volcano_corr<span class="sc">$</span>gene_names <span class="sc">%in%</span> gnames_to_plot),]),] <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pldf) <span class="ot">&lt;-</span> gnames_to_plot</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>pldf <span class="sc">%&gt;%</span> <span class="fu">merge</span>(samples, <span class="at">by=</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            reshape2<span class="sc">::</span><span class="fu">melt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>            <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x=</span>SampleGroup, <span class="at">y=</span>value)) <span class="sc">+</span> </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">"lightgray"</span>) <span class="sc">+</span> </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color=</span>SampleGroup), <span class="at">size=</span><span class="dv">3</span>, <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">'RdYlBu'</span>) <span class="sc">+</span> </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">facet_wrap</span>(<span class="sc">~</span>variable) <span class="sc">+</span> </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>💡 Can we check the expression of one of the genes highlighted in the conclusions of the original paper?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>🤔 What if we want to plot the two most differentially expressed genes in both directions (both up and down)? <em>hint</em>: catch their names from the <code>volcano_corr</code> table by ordering it on fold-change with the <code>%&gt;% arrange()</code> function</p>
+</blockquote>
+</section>
+<section id="further-downstream-analyses" class="level2">
+<h2 class="anchored" data-anchor-id="further-downstream-analyses">Further Downstream Analyses</h2>
+<p>Once we have our differentially expressed genes, we can <strong>perform various downstream analyses to check the functional aspects of the group of genes which are up- or down-regulated</strong> in our condition of interest. In the following sections, we will go through two of these, <strong>Gene Set Enrichment Analysis</strong> (GSEA) and <strong>Gene Ontology Enrichment Analysis</strong> (GO).</p>
+<section id="gsea" class="level3">
+<h3 class="anchored" data-anchor-id="gsea">GSEA</h3>
+<p>Gene Set Enrichment Analaysis was <a href="https://www.pnas.org/doi/10.1073/pnas.0506580102">first published</a> in 2005 as a <strong>method to interpret genome-wide expression profiles from RNA-seq data using sets of genes with known biological functions</strong>. In this sense, GSEA is used to <strong>check at which level a signature of genes is <em>enriched</em> in an expression profile</strong>. We can graphically summarize the steps in GSEA using the following picture, from the original publication.</p>
+<center>
+<p><img src="https://www.pnas.org/cms/10.1073/pnas.0506580102/asset/c5e213a9-4247-4506-bae4-908054152f97/assets/graphic/zpq0370595180001.jpeg" width="500"></p>
+<p><em>GSEA needs two ingredients, a <strong>ranked</strong> gene list from our analysis (for instance genes ordered by log-fold change) and a list of genes with biological relevance (for instance genes known to regulate CD8+ T-cell exhaustion).</em></p>
+</center>
+<p><strong>1.</strong> We start by taking our <strong>list of up- or down- regulated genes</strong> and <strong>order them based on the value of their <em>fold-change</em></strong> so that our list will have genes that change a lot positively at the top and ones that change a lot negatively at the bottom. This will represent our <strong>ranking</strong>.</p>
+<p><strong>2.</strong> We then <strong>take one or more curated and archived <em>gene sets</em> which are related to a biological function</strong> we might be interested in investigating in our dataset.</p>
+<p><strong>3.</strong> Finally we <strong>go through our ranking</strong> from top to bottom <strong>counting the number of times we see a gene which is also in the <em>gene set</em> that we are looking at</strong>. We expect to see genes from a given <strong>gene set</strong> appear at the top of our ranking if that biological function is particularly important in the genes of our ranking.</p>
+<p>Over the years, a collection of curated gene sets called <strong><a href="https://www.gsea-msigdb.org/gsea/msigdb/">MSigDB</a></strong> has been expanded and is now a <strong>great resource</strong> to check which ones are more or less enriched in our data at hand.</p>
+<center>
+<p><img src="../pics/msigdb_screenshot.png" width="700"></p>
+<p><em>The web interface for the MSigDB gene set database</em></p>
+</center>
+<p>In our specific use case, <strong>we are going to run GSEA on the set of up-regulated genes in CD8+ T<sub>ex</sub> cells to check if a gene set of exhaustion is indeed enriched in the genes we have found up-regulated</strong>. For this task we are going to use the <code>fgsea</code> package. In order to extract the gene set without the need to directly download it, we are going to <strong>access MSigDB directly from <code>R</code></strong> using another package called <code>msigdbr</code>.</p>
+<blockquote class="blockquote">
+<p>🚨 <strong>WARNING</strong>: This code that follows might kill your <code>R</code> session inadvertedly. If this happens, don’t panic, and reload the object we saved before! Use the following syntax to get back on track after you resume the session:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> res <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"results.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> samples <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"samples_table.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In this way you should be all set to successfully run all the code below! 🙌🏻</p>
+</blockquote>
+<section id="extract-msigdb-signatures" class="level4">
+<h4 class="anchored" data-anchor-id="extract-msigdb-signatures">Extract MSigDB Signatures</h4>
+<p>In the following chunk, we use a function from the <code>msigdbr</code> package to extract the gene set of our interest:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(msigdbr)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the gene sets from the MSigDB database</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>immune_gsets <span class="ot">&lt;-</span> <span class="fu">msigdbr</span>(<span class="at">species =</span> <span class="st">"human"</span>, <span class="at">category =</span> <span class="st">"C7"</span>, <span class="at">subcategory =</span> <span class="st">"IMMUNESIGDB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s see what’s in the <code>immune_gsets</code> object:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at what we fetched from the database</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(immune_gsets, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">gene_symbol</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ncbi_gene</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ensembl_gene</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">db_gene_symbol</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">db_ncbi_gene</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">db_ensembl_gene</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">source_gene</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_id</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_collection</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_subcollection</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_collection_name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_description</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_source_species</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_pmid</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_geoid</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_exact_source</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_url</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">db_version</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">db_target_species</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">entrez_gene</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_cat</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gs_subcat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ABCA2</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">ENSG00000107331</td>
+<td style="text-align: left;">ABCA2</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">ENSG00000107331</td>
+<td style="text-align: left;">ABCA2</td>
+<td style="text-align: left;">M3044</td>
+<td style="text-align: left;">GOLDRATH_EFF_VS_MEMORY_CD8_TCELL_DN</td>
+<td style="text-align: left;">C7</td>
+<td style="text-align: left;">IMMUNESIGDB</td>
+<td style="text-align: left;">ImmuneSigDB</td>
+<td style="text-align: left;">Genes down-regulated in comparison of effector CD8 T cells versus memory CD8 T cells.</td>
+<td style="text-align: left;">MM</td>
+<td style="text-align: left;">16492737</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">GSE1000002_1582_200_DN</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">2026.1.Hs</td>
+<td style="text-align: left;">HS</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">C7</td>
+<td style="text-align: left;">IMMUNESIGDB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABCC5</td>
+<td style="text-align: left;">10057</td>
+<td style="text-align: left;">ENSG00000114770</td>
+<td style="text-align: left;">ABCC5</td>
+<td style="text-align: left;">10057</td>
+<td style="text-align: left;">ENSG00000114770</td>
+<td style="text-align: left;">ABCC5</td>
+<td style="text-align: left;">M3044</td>
+<td style="text-align: left;">GOLDRATH_EFF_VS_MEMORY_CD8_TCELL_DN</td>
+<td style="text-align: left;">C7</td>
+<td style="text-align: left;">IMMUNESIGDB</td>
+<td style="text-align: left;">ImmuneSigDB</td>
+<td style="text-align: left;">Genes down-regulated in comparison of effector CD8 T cells versus memory CD8 T cells.</td>
+<td style="text-align: left;">MM</td>
+<td style="text-align: left;">16492737</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">GSE1000002_1582_200_DN</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">2026.1.Hs</td>
+<td style="text-align: left;">HS</td>
+<td style="text-align: left;">10057</td>
+<td style="text-align: left;">C7</td>
+<td style="text-align: left;">IMMUNESIGDB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABHD14A</td>
+<td style="text-align: left;">25864</td>
+<td style="text-align: left;">ENSG00000248487</td>
+<td style="text-align: left;">ABHD14A</td>
+<td style="text-align: left;">25864</td>
+<td style="text-align: left;">ENSG00000248487</td>
+<td style="text-align: left;">ABHD14A</td>
+<td style="text-align: left;">M3044</td>
+<td style="text-align: left;">GOLDRATH_EFF_VS_MEMORY_CD8_TCELL_DN</td>
+<td style="text-align: left;">C7</td>
+<td style="text-align: left;">IMMUNESIGDB</td>
+<td style="text-align: left;">ImmuneSigDB</td>
+<td style="text-align: left;">Genes down-regulated in comparison of effector CD8 T cells versus memory CD8 T cells.</td>
+<td style="text-align: left;">MM</td>
+<td style="text-align: left;">16492737</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">GSE1000002_1582_200_DN</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">2026.1.Hs</td>
+<td style="text-align: left;">HS</td>
+<td style="text-align: left;">25864</td>
+<td style="text-align: left;">C7</td>
+<td style="text-align: left;">IMMUNESIGDB</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We can see that every row is a different gene (the <code>gene_symbol</code> colums) with its associated gene set (<code>gs_name</code> column). We will now extract a gene set related to CD8+ T-cell exhaustion which comes from <a href="https://www.sciencedirect.com/science/article/pii/S1074761307004542?via%3Dihub">this publication</a> and is names <a href="https://www.gsea-msigdb.org/gsea/msigdb/human/geneset/GSE9650_EFFECTOR_VS_EXHAUSTED_CD8_TCELL_DN.html"><code>GSE9650_EFFECTOR_VS_EXHAUSTED_CD8_TCELL_DN</code></a> in the database.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the `immune_gsets` table and take only the genes from the gene set of our interest</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gene_set_name <span class="ot">&lt;-</span> <span class="st">"GSE9650_EFFECTOR_VS_EXHAUSTED_CD8_TCELL_DN"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tex_sig_df <span class="ot">&lt;-</span> immune_gsets <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gs_name <span class="sc">==</span> gene_set_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>How many genes do we have in the gene set that we just isolated? We can check this by looking at the number of rows of this new <code>tex_sig_df</code> table that we generated above using the command <code>nrow(tex_sig_df)</code>. Doing this should result in having 201 genes.</p>
+</section>
+<section id="perform-gsea" class="level4">
+<h4 class="anchored" data-anchor-id="perform-gsea">Perform GSEA</h4>
+<p>Now we can perform GSEA using the <code>fgsea</code> package in <code>R</code>!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fgsea)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the ranking based on fold-change, from high (expressed in Tex) to low (expressed in Teff)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">&lt;-</span> res <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(logFC)) <span class="sc">%&gt;%</span> <span class="fu">rownames</span>()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>vals <span class="ot">&lt;-</span> res <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(logFC)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(logFC)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set names</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(vals) <span class="ot">&lt;-</span> ids </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare gene set</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>gset <span class="ot">&lt;-</span> <span class="fu">list</span>(tex_sig_df<span class="sc">$</span>ensembl_gene)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gset) <span class="ot">&lt;-</span> gene_set_name</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Run GSEA</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>fgseaRes <span class="ot">&lt;-</span> <span class="fu">fgsea</span>(<span class="at">pathways =</span> gset, </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">stats    =</span> vals,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">eps      =</span> <span class="fl">0.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at results</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fgseaRes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">pathway</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">pval</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">padj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">log2err</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ES</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NES</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">size</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">leadingEdge</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GSE9650_EFFECTOR_VS_EXHAUSTED_CD8_TCELL_DN</td>
+<td style="text-align: right;">0.0001381</td>
+<td style="text-align: right;">0.0001381</td>
+<td style="text-align: right;">0.5188481</td>
+<td style="text-align: right;">-0.4236245</td>
+<td style="text-align: right;">-1.761056</td>
+<td style="text-align: right;">144</td>
+<td style="text-align: left;">ENSG0000....</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We can now <strong>plot the GSEA results</strong> in the standard way:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot GSEA results</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotEnrichment</span>(gset[[gene_set_name]],</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>               vals) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span>gene_set_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From the GSEA results, we can see that <strong>the current gene set we used is mostly depleted in the differential genes we have in our CD8+ T<sub>ex</sub> vs CD8+ T<sub>eff</sub> comparison</strong>. Given that the gene set comes from a study carried out in mice in a context of chronic viral infection, this might indicate that our current results reflect a different kind of CD8+ T-cell exhaustion observed in the tumor microenvironment of human tumors as opposed to the process happening during viral infection in mice.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Whenever we use gene sets when testing for enrichment, we have to be sure of <em>where</em> they were isolated in order to avoid misinterpreting results and/or getting to wrong conclusions, like it could have happened in this case!</strong></p>
+</blockquote>
+</section>
+</section>
+<section id="gene-ontology-enrichment-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="gene-ontology-enrichment-analysis">Gene Ontology Enrichment Analysis</h3>
+<p>Next, we will try to <strong>get a more <em>unsupervised</em> look at what kind of biology is happening inside our CD8+ T<sub>ex</sub> cells by performing a Gene Ontology Enrichment analysis</strong>. This will allow us to check which and how many up-regulated genes in CD8+ T<sub>ex</sub> cells are represented in various biological processes. We will do this using the <code>clusterProfiler</code> package in <code>R</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>up_df <span class="ot">&lt;-</span> res <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PValue <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> logFC <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>down_df <span class="ot">&lt;-</span> res <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PValue <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> logFC <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get up-regulated genes</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(up_df)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform gene ontology enrichment</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>ego <span class="ot">&lt;-</span> <span class="fu">enrichGO</span>(<span class="at">gene         =</span> genes,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">OrgDb         =</span> org.Hs.eg.db,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">keyType       =</span> <span class="st">'ENSEMBL'</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">ont           =</span> <span class="st">"MF"</span>, <span class="co"># Molecular Function, use "BP" or "CC" for Biological Process or Cellular Component</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">pAdjustMethod =</span> <span class="st">"BH"</span>,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">pvalueCutoff  =</span> <span class="fl">0.05</span>,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">qvalueCutoff  =</span> <span class="fl">0.05</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">readable      =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ego)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ID</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">GeneRatio</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">BgRatio</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">RichFactor</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">FoldEnrichment</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">zScore</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">pvalue</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.adjust</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">qvalue</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">geneID</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GO:0140328</td>
+<td style="text-align: left;">GO:0140328</td>
+<td style="text-align: left;">floppase activity</td>
+<td style="text-align: left;">9/1397</td>
+<td style="text-align: left;">16/21296</td>
+<td style="text-align: right;">0.5625000</td>
+<td style="text-align: right;">8.574803</td>
+<td style="text-align: right;">8.030950</td>
+<td style="text-align: right;">2.0e-07</td>
+<td style="text-align: right;">0.0001742</td>
+<td style="text-align: right;">0.0001645</td>
+<td style="text-align: left;">ATP8B2/ABCB4/ABCB1/ATP8A1/ABCA7/ABCA1/ABCA2/ATP8A2/ATP10A</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GO:0019957</td>
+<td style="text-align: left;">GO:0019957</td>
+<td style="text-align: left;">C-C chemokine binding</td>
+<td style="text-align: left;">10/1397</td>
+<td style="text-align: left;">24/21296</td>
+<td style="text-align: right;">0.4166667</td>
+<td style="text-align: right;">6.351706</td>
+<td style="text-align: right;">6.950485</td>
+<td style="text-align: right;">1.2e-06</td>
+<td style="text-align: right;">0.0006336</td>
+<td style="text-align: right;">0.0005983</td>
+<td style="text-align: left;">CXCR3/CCR8/CXCR6/CCR3/CCR2/CCR5/CX3CR1/XCR1/CXCR1/ZFP36</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GO:0001637</td>
+<td style="text-align: left;">GO:0001637</td>
+<td style="text-align: left;">G protein-coupled chemoattractant receptor activity</td>
+<td style="text-align: left;">10/1397</td>
+<td style="text-align: left;">26/21296</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: right;">5.863113</td>
+<td style="text-align: right;">6.574136</td>
+<td style="text-align: right;">2.9e-06</td>
+<td style="text-align: right;">0.0007601</td>
+<td style="text-align: right;">0.0007177</td>
+<td style="text-align: left;">CXCR3/CCR8/CXCR6/CCR3/CCR2/CCR5/CX3CR1/XCR1/CMKLR1/CXCR1</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GO:0004950</td>
+<td style="text-align: left;">GO:0004950</td>
+<td style="text-align: left;">chemokine receptor activity</td>
+<td style="text-align: left;">10/1397</td>
+<td style="text-align: left;">26/21296</td>
+<td style="text-align: right;">0.3846154</td>
+<td style="text-align: right;">5.863113</td>
+<td style="text-align: right;">6.574136</td>
+<td style="text-align: right;">2.9e-06</td>
+<td style="text-align: right;">0.0007601</td>
+<td style="text-align: right;">0.0007177</td>
+<td style="text-align: left;">CXCR3/CCR8/CXCR6/CCR3/CCR2/CCR5/CX3CR1/XCR1/CMKLR1/CXCR1</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GO:0019956</td>
+<td style="text-align: left;">GO:0019956</td>
+<td style="text-align: left;">chemokine binding</td>
+<td style="text-align: left;">11/1397</td>
+<td style="text-align: left;">33/21296</td>
+<td style="text-align: right;">0.3333333</td>
+<td style="text-align: right;">5.081365</td>
+<td style="text-align: right;">6.216866</td>
+<td style="text-align: right;">4.7e-06</td>
+<td style="text-align: right;">0.0009927</td>
+<td style="text-align: right;">0.0009373</td>
+<td style="text-align: left;">CXCR3/CCR8/CXCR6/CCR3/CCR2/CCR5/CX3CR1/XCR1/ITGA4/CXCR1/ZFP36</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GO:0016493</td>
+<td style="text-align: left;">GO:0016493</td>
+<td style="text-align: left;">C-C chemokine receptor activity</td>
+<td style="text-align: left;">9/1397</td>
+<td style="text-align: left;">23/21296</td>
+<td style="text-align: right;">0.3913043</td>
+<td style="text-align: right;">5.965081</td>
+<td style="text-align: right;">6.312440</td>
+<td style="text-align: right;">7.7e-06</td>
+<td style="text-align: right;">0.0013617</td>
+<td style="text-align: right;">0.0012857</td>
+<td style="text-align: left;">CXCR3/CCR8/CXCR6/CCR3/CCR2/CCR5/CX3CR1/XCR1/CXCR1</td>
+<td style="text-align: right;">9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Let’s now plot the enrichment values that we got with a <em>graph layout</em>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results of gene ontology enrichment</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">goplot</span>(ego, <span class="at">firstSigNodes=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we can also plot the results with what is known as a ranked <strong>dot plot</strong>, here we <strong>encode the significance of the enrichment in the color of the dot</strong>, while its size represent the overlap of the specific gene set with the one we are using to perform the test (our list of up-regulated genes).</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotplot</span>(ego, <span class="at">showCategory=</span><span class="dv">15</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Dotplot for GO enrichment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>💡 <strong>GO analyses might highlight very interesting patterns and generate hypotheses, but are many times quite hard to interpret depending also on the biological system we are studying.</strong></p>
+</blockquote>
+</section>
+<section id="gene-regulatory-network-inference" class="level3">
+<h3 class="anchored" data-anchor-id="gene-regulatory-network-inference">Gene Regulatory Network inference</h3>
+<p>In this part of the workshop, we will use <a href="https://link.springer.com/article/10.1186/1471-2105-7-S1-S7"><code>ARACNE</code></a> to infer relationships between genes in our data! This is informative since it allows us to group together genes based on correlations across samples. in other words we try to create gene groups (or “hubs” in network analytics terminology) based on how coordinately genes are expressed in the data. The way this works is that we <em>infer</em> which transcription factors might be linked to the regulation of specific genes by analyzing how much each pair of genes is co-dependent. This is of course a simplification of the approach but you can think of the results as a collection of pair-wise gene-gene connections called “<em>directed edges</em>” described by a single “<em>weight</em>” representing the strength of the regulation.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a SummarizedExperiment from `dds`, think of this as another way to store the same information we used before!</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Like we did before, we convert gene IDs to more interpretable symbols</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">SummarizedExperiment</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">assays =</span> <span class="fu">list</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">counts =</span> dds<span class="sc">$</span>counts,                        </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">norm.factors =</span> <span class="fu">matrix</span>(                      </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            dds<span class="sc">$</span>samples<span class="sc">$</span>norm.factors,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">nrow =</span> <span class="fu">nrow</span>(dds<span class="sc">$</span>counts),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">ncol =</span> <span class="fu">ncol</span>(dds<span class="sc">$</span>counts),</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">dimnames =</span> <span class="fu">dimnames</span>(dds<span class="sc">$</span>counts)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">colData =</span> dds<span class="sc">$</span>samples,                        <span class="co"># sample metadata</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">rowData =</span> dds<span class="sc">$</span>genes                           <span class="co"># gene metadata (if present)</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># We use it as input to aracne through BioNERO</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: filter samples</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>final_exp <span class="ot">&lt;-</span> <span class="fu">exp_preprocess</span>(</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    se, </span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_exp =</span> <span class="dv">10</span>, </span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">variance_filter =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="dv">2000</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The second ingredient we need is a list of potential regulators, we will therefore load a set of human transcription factors (TFs) that we can download from a <a href="https://humantfs.ccbr.utoronto.ca/download.php">database curated by the University of Toronto</a>.</p>
+<blockquote class="blockquote">
+<p>💡 Download the “TF ensembl IDs” <code>.txt</code> file from the provided link and save it in your <code>data</code> folder!</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the TFs!</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tf_symbols <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"./data/TFs_Ensembl_v_1.01.txt"</span>, <span class="at">header =</span> F)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>After we have performed the correct filtering to ensure consistency, we can now apply <code>ARACNE</code>!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: use ARACNE</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>aracne_obj <span class="ot">&lt;-</span> <span class="fu">grn_infer</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    final_exp, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"aracne"</span>, </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">regulators =</span> tf_symbols<span class="sc">$</span>V1, </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nTrees =</span> <span class="dv">10</span>) <span class="co"># Usually set to 1,000 - improves accuracy</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now let’s see what our gene regulatory network looks like!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show a snapshot of the gene regulatory network</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aracne_obj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Node1           Node2   Weight
+2244  ENSG00000049768          LRG_62 6.907755
+65469 ENSG00000118058         LRG_613 6.907755
+72505 ENSG00000109320        LRG_1316 6.907755
+82786 ENSG00000173757         LRG_192 6.907755
+95148 ENSG00000115415         LRG_111 6.907755
+98254 ENSG00000080603 ENSG00000282034 6.907755</code></pre>
+</div>
+</div>
+<p>We can exchange Ensembl gene IDs with gene names like we did for the volcano plot above to aid with interpretability. The <code>Node1</code> column should contain transcription factor names that represent our putative regulators!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert source nodes (TFs)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>aracne_obj<span class="sc">$</span>Node1 <span class="ot">&lt;-</span> <span class="fu">mapIds</span>(org.Hs.eg.db, <span class="at">keys=</span>aracne_obj<span class="sc">$</span>Node1, <span class="at">column=</span><span class="st">"SYMBOL"</span>, <span class="at">keytype=</span><span class="st">"ENSEMBL"</span>, <span class="at">multiVals=</span><span class="st">"first"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert targets (inferred genes regulated by TFs)</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>aracne_obj<span class="sc">$</span>Node2 <span class="ot">&lt;-</span> <span class="fu">mapIds</span>(org.Hs.eg.db, <span class="at">keys=</span>aracne_obj<span class="sc">$</span>Node2, <span class="at">column=</span><span class="st">"SYMBOL"</span>, <span class="at">keytype=</span><span class="st">"ENSEMBL"</span>, <span class="at">multiVals=</span><span class="st">"first"</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter unmapped symbols</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>aracne_obj <span class="ot">&lt;-</span> aracne_obj <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Show example</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aracne_obj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Node1 Node2   Weight
+18977 MYBL2  ORC1 2.471715
+86274  MXD4   LBH 2.471715
+51379  E2F1  CDK2 2.126037
+62337 MYBL2  FEN1 2.126037
+74860 MECP2 ARRB2 2.126037
+78820  ELF4 RAB37 2.126037</code></pre>
+</div>
+</div>
+<p>Let’s plot it to explore the results!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Easy convenience function from BioNERO</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grn</span>(aracne_obj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>💡 Although this visualization is nice to get a global overview, try to re-use the same function above but with <code>interactive = TRUE</code> and see what happens</p>
+</blockquote>
+<details>
+<summary>
+Show result
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="htmlwidget-e025ded9791d2a152901" style="width:100%;height:650px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e025ded9791d2a152901">{"x":{"links":{"source":[55,31,26,70,64,12,30,38,1,79,32,69,53,16,42,8,45,75,56,76,77,22,47,22,47,73,57,42,8,30,32,35,23,4,9,76,40,76,65,70,65,30,43,30,75,76,52,40,23,32,46,70,30,44,50,67,25,3,69,15,37,56,61,21,13,51,20,72,42,3,45,61,71,8,61,43,40,75,12,79,73,13,65,23,6,68,0,17,8,42,51,21,53,64,11,78,42,51,73,74,73,40,34,22,11,71,67,23,70,71,19,19,60,36,45,21,36,77,29,31,54,18,25,21,44,32,46,32,70,44,65,49,19,1,79,16,63,21,31,42,2,8,9,44,63,58,4,9,33,64,65,35,61,34,38,37,31,61,19,76,72,76,61,15,75,62,79,70,26,1,48,12,78,78,10,18,23,6,48,11,22,18,26,56,47,34,62,39,10,6,50,55,70,68,61,32,6,67,42,52,28,6,37,7,54,56,59,42,20,20,20,52,76,56,64,76,74,77,63,76,74,78,38,12,49,56,26,25,75,31,51,19,0,18,10,45,78,57,69,77,71,22,18,17,74,55,79,11,0,40,30,26,76,72,59,73,19,12,45,62,46,59,12,32,24,4,7,38,10,40,17,66,2,0,59,29,27,73,78,58,36,36,28,43,64,15,62,46,23,35,38,25,11,7,27,32,77,76,36,76,52,78,52,77,78,32,43,73,61,34,63,40,57,77,22,75,78,73,78,52,77,75,78,43,24,43,34,47,53,78,74,75,62,28,30,63,54,78,6,17,6,61,56,46,16,68,26,19,24,8,44,3,23,65,71,68,6,46,32,12,55,68,47,17,34,27,38,15,41,13,74,54,74,65,29,43,79,62,38,7,77,19,1,67,7,23,9,45,36,78,34,11,51,73,71,72,18,33,20,78,76,77,74,40,71,77,66,59,12,39,50,63,2,54,66,78,38,10,21,4,78,13,73,51,43,79,79,17,78,77,78,9,22,19,45,36,19,76,39,7,42,36,6,0,75,71,66,17,71,78,46,36,27,39,35,26,21,8,29,27,32,43,58,4,18,33,17,22,25,73,63,32,54,68,0,7,36,57,61,37,53,26,46,23,38,65,4,9,18,56,25,1,55,68,5,0,11,36,78,76,51,74,66,48,79,64,74,16,31,9,25,31,78,31,38,36,28,76,66,14,40,8,15,40,67,50,65,15,2,62,66,79,76,30,57,25,63,22,34,76,64,61,69,29,14,15,77,66,10,8,49,19,31,16,42,46,47,27,32,38,5,3,33,9,4,47,10,13,57,49,40,21,6,74,52,12,78,41,21,44,48,22,17,76,64,34,78,12,15,70,55,30,21,75,1,32,43,5,19,20,28,75,49,36,74,76,64,24,24,24,58,57,40,20,72,17,64,64,72,57,74,24,20,20,42,42,42,76,68,62,57,57,37,62,72,62,58,24,53,78,20,6,63,49,43,11,48,14,47,48,75,34,38,60,67,6,68,16,54,74,39,34,18,15,52,72,64,62,8,68,46,30,46,78,25,12,11,52,54,39,59,0,26,45,12,30,56,59,23,21,72,56,48,53,42,15,34,45,14,0,8,16,74,55,61,37,76,62,61,51,61,9,67,68,50,71,43,31,38,21,32,46,17,60,71,61,26,42,38,2,59,23,4,58,51,15,47,17,55,23,65,35,54,60,66,55,5,12,39,49,70,0,6,5,10,18,63,77,52,5,29,7,64,77,78,71,7,11,63,26,50,67,26,41,70,63,66,65,32,68,44,50,70,26,67,14,71,27,68,68,55,65,74,77,54,63,39,11,29,26,72,10,18,50,44,78,33,65,26,6,57,69,28,36,39,47,41,16,35,38,22,77,72,64,76,2,72,29,76,64,26,11,67,23,9,3,1],"target":[354,493,255,255,574,476,476,270,155,672,428,468,332,332,128,128,472,472,360,659,659,303,303,325,325,561,561,145,145,482,482,98,98,98,98,660,425,632,489,452,452,178,413,369,369,592,592,580,156,317,317,633,246,366,366,537,527,84,519,339,261,483,483,353,547,318,375,522,148,148,596,667,608,160,559,236,443,437,437,541,541,109,517,469,102,560,152,572,189,254,336,223,657,657,657,657,370,347,661,639,623,461,340,340,308,585,507,300,575,528,499,242,416,388,388,510,241,670,183,410,578,154,426,237,237,293,263,263,243,243,243,591,281,281,647,362,553,149,184,184,82,185,267,267,611,540,195,195,195,602,193,193,626,190,320,320,320,564,302,613,538,538,520,168,652,680,680,321,321,321,286,169,169,678,119,119,119,114,551,423,151,134,316,502,421,421,675,349,133,180,333,333,333,333,567,440,213,460,331,583,583,111,285,285,407,407,407,348,358,140,264,579,579,625,625,625,677,666,433,656,656,656,305,536,288,368,292,420,622,491,357,346,228,173,173,573,637,637,637,637,643,531,265,202,569,569,569,122,83,373,386,301,576,576,566,549,245,256,256,599,599,609,257,327,374,198,344,247,96,215,477,477,88,123,343,343,438,646,646,500,274,234,234,479,473,150,615,474,214,214,290,159,91,91,182,182,471,471,471,329,329,684,487,487,487,296,296,568,542,405,610,436,496,654,534,534,624,618,503,503,503,503,687,498,384,395,395,395,395,674,674,685,685,685,685,682,682,682,164,306,95,429,429,342,235,304,304,431,427,97,439,117,409,501,501,556,376,275,275,275,363,363,278,448,448,217,217,175,295,238,628,669,634,523,391,434,668,668,205,385,631,81,81,514,417,94,94,418,418,686,390,390,361,361,593,338,338,338,218,679,546,546,546,505,521,604,604,526,250,209,323,605,87,581,516,516,411,211,359,186,665,126,543,543,570,570,601,601,691,630,645,104,414,187,415,415,191,600,206,326,262,506,90,92,649,587,597,597,486,486,397,449,449,259,284,227,227,93,194,378,378,378,558,287,287,287,199,199,199,554,636,314,480,480,80,80,582,485,533,276,356,322,464,219,297,465,210,210,210,403,544,132,504,504,165,127,101,419,689,658,525,617,617,644,644,584,614,115,115,177,315,389,681,459,324,200,200,588,588,106,456,197,141,435,462,467,467,124,89,640,640,664,664,207,545,272,619,371,450,590,590,550,495,201,108,108,484,484,248,188,607,121,146,146,146,269,424,167,167,167,166,181,85,85,85,299,251,105,406,406,291,233,144,629,629,454,454,224,224,400,488,116,116,641,641,377,466,466,131,470,470,445,258,606,143,393,393,99,230,239,555,555,478,458,683,635,586,158,341,351,562,365,524,252,571,571,577,513,552,451,690,530,231,208,398,328,280,651,627,598,441,447,408,408,539,595,475,475,394,688,176,130,620,490,563,107,463,112,402,310,653,399,380,492,492,142,638,179,548,548,192,192,138,282,648,648,648,648,135,535,379,442,442,442,515,352,196,508,671,279,481,137,372,387,387,387,396,404,221,401,511,345,345,226,226,157,355,621,147,153,172,232,453,453,203,203,662,422,422,512,509,312,312,313,313,616,457,309,309,240,381,381,383,383,589,663,163,229,229,225,225,161,161,392,497,136,364,330,382,382,222,222,455,455,455,455,113,103,283,650,650,118,86,86,171,171,603,603,603,307,220,100,518,676,529,529,294,334,430,273,273,594,277,277,277,446,446,494,212,260,260,260,260,260,260,673,673,367,565,350,350,444,337,337,337,289,289,125,204,298,557,335,335,642,642,642,642,642,266,110,412,412,170,170,311,268,253,249,244,216,216,655,655,655,655,162,532,174,612,432,271,139,120,120,120,129,319],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["MYBL2","MXD4","E2F1","MECP2","ELF4","KLF13","AKNA","ZBED2","NME2","STAT2","ATF6B","YBX1","STAT4","FOXM1","TFDP1","DNMT1","ZBTB32","KDM2A","BAZ2A","ARHGAP35","CHCHD3","KLF2","SON","IRF9","GTF3A","SRCAP","STAT5B","IRF1","EOMES","PA2G4","IKZF3","VDR","KMT2A","SP110","ZNF75D","SMAD3","ZBTB38","IRF4","NFATC2","ZNF655","MAZ","STAT6","MYB","XBP1","NFATC3","RBPJ","KLF6","IKZF1","BHLHE40","RORA","ETS1","ZNF292","RUNX3","HMGA1","TCF7","MLXIP","SREBF2","STAT5A","NFKB1","JUND","ZNF217","MBD2","NFIL3","ZNF207","ATF4","SP100","SATB1","GATA3","SP140L","PHF19","ELF1","NFKB2","ANKZF1","ZBTB1","STAT1","FOXN3","SP140","LEF1","FOXP3","STAT3","ORC1","LBH","CDK2","FEN1","ARRB2","RAB37","TMC6","MCM6","GOT2","PRDX3","NBEAL2","HILPDA","NCAPG2","NME1-NME2","LIMD2","IL12RB1","GMIP","IPO5","AP1G2","RNF44","TMPRSS3","PCNA","BRD2","THEMIS","MYD88","RACGAP1","POLE","RRM1","PSMD3","BIRC5","UNC13D","DNM2","SAE1","TGFB1","CYTH4","PHGDH","RASSF5","IQSEC1","TK1","CYBC1","ZAP70","PTPN18","FDFT1","GPI","PRDX2","TXN","MKI67","PCMTD2","AHCY","ZBP1","RPS6KA1","RCC2","PBXIP1","DEF6","DBNL","SHMT2","TALDO1","SLC43A3","SF1","YWHAE","EEF1B2","PPM1G","SEPTIN1","RNF166","RASAL3","ANP32B","PTPN3","SOD1","ATP8B2","CDC42SE1","HDGF","DAZAP2","BTG1","SORL1","CD3D","ADD1","ARHGEF1","SNRPD2","RPL17-C18orf32","HERC2","AURKA","SZT2","XCL2","SYNGAP1","IGF2R","PCED1B-AS1","PXN","PTPRJ","COX8A","CTSC","USP28","TMC8","SPAG5","EXOC7","XRCC5","KHSRP","RPS6","PHYKPL","APOL3","SERINC3","DENND4B","RAB29","HLA-B","CCT6A","CDCA7L","CDK4","MINK1","MYO18A","PTMA","BUB1","CIRBP","MYO1F","SETX","CHKB-CPT1B","NOLC1","CHD2","SLC25A5","PPIA","GIGYF1","NXF1","PLEK","PSMD14","FBRS","SQLE","UBA2","LAMP1","N4BP2L2","PRKCH","RPL7AP6","MARCHF6","PARVG","MFNG","TRAPPC10","DIDO1","HELZ2","GNAI2","WDR82","KCTD7","LOC729998","PARP12","TMPO","SMARCC2","TCIRG1","C11orf21","RASGRP2","SYTL2","SNHG29","NLRP1","EVI2B","SYNRG","RNPEPL1","RPL7A","SPATA13","RASA3","GZMK","IL2RA","B2M","CD52","KIFC1","RPL10A","STK38","CCR5","CCM2","CD63","WDR81","GABARAP","ARL4C","GLG1","PTK2B","WARS1","MAPK1","RAC2","RPL3","VSIR","BUB1B","ACSS1","GALNT2","GBP4","RIPOR2","NKTR","TRBC2","ASNS","NAP1L1","CD6","EEF1G","FAU","UCP2","CDK5RAP3","VAMP2","PTPN4","ADCY7","YPEL3","PRRC2B","TRAC","GZMA","ITK","P4HA1","TRAF3IP3","JAK1","SLC38A1","RPLP0","CD81","SF3B2","TIA1","NLRC3","DUSP4","CTNNA1","NSD1","EMB","TUG1","HERC1","RALY","EPB41","CD53","TNFRSF9","KIF21B","HLA-F","PARP15","UBA7","RAB5B","CCDC88B","FLOT2","CNN2","ANKHD1","IL2RB","EIF4EBP2","IKBKE","TMEM63A","CBLB","STAG3L5P","SEC14L1","USP34","SRRM2","SRSF5","OPTN","PIK3CD","DCAF8","ARHGEF3","ATP13A3","ZYX","CLSTN3","CTDSP2","PACS1","MARF1","PLEC","ANKHD1-EIF4EBP3","NAMPTP1","GBP5","RPL7P9","HLA-DPA1","TATDN2","DLD","AGK","DGKA","TPP1","UBE2L6","BZW1","TTN","LOC124900372","ASF1B","CARD8","RPL21","IL17RA","GPR15","GIMAP8","SNHG15","ESYT1","CAND1","EED","DDX6","TSPOAP1-AS1","RPL23","SLC20A1","ATG16L1","ABCC1","SNX20","PABPC1","ERO1A","EEF1A1P19","MIAT","ALDH18A1","LMAN1","CD84","ITPKB","TAPBP","RPL27AP6","ARPC4-TTLL3","TRBV6-5","ENO2","ARAP2","C1QBP","PSD4","SLC44A2","FKBP8","GHITM","ATP5F1A","ITGB2","RBM39","NOTCH2","SLAMF1","SEL1L3","STOM","TBC1D2B","STX16","IARS2","LAPTM5","FLOT1","SLC6A6","CCR2","PILRB","LINC02446","KLRK1","TAF15","RNF213","RPS2P46","ID2","SLC7A1","NIN","RPL7P1","SEC31B","RASSF2","SMC4","SAMD9L","PATL1","SMARCA2","HNRNPH1","RACK1","DUSP5","RPS17","ISG15","CD2","MED23","USP22","APOL6","MYL12A","MYO1E","CCNL2","LIMA1","LINC00861","PCNX1","ERAP1","DDX17","SRGN","DAPK2","PTPRC","AP2M1","CD5","IMMT","ADGRE5","IL12RB2","TPR","ILRUN","YEATS2","EIF4A2","KMT2C","PPP1CA","HNRNPUL1","BAX","GPR68","IQGAP2","DIAPH1","RPS14","SLAMF7","BAG6","TTLL3","RESF1","TRAM1","RPS15","JAK3","NKG7","PSMA3-AS1","RPL37","APOL1","SPOCK2","RASGRP1","TESPA1","POLR2A","ST3GAL1","RPL12","PIP4K2A","DIP2A","CAPZB","PPP1R9B","RSL1D1","PAG1","PARP4","RCBTB2","PPP2R5C","AFAP1L2","BMF","RCSD1","HLA-DMA","AHI1","HDAC7","HELZ","RPS27AP16","ADAM19","GOLGA8A","RPL11","HCP5","ORAI2","SLC3A2","ANTXR2","ASXL2","PTAR1","OXA1L","NFKBIA","HLA-DQB1","RASSF3","APOBR","RPS9","ERMP1","SEMA4D","ACSL4","TRANK1","PSMD13","HNRNPUL2-BSCL2","TAF1D","HYOU1","CCL4","GRB2","ITGA4","DDIT4","HSPA1A","PCED1B","LSP1","NBEAL1","CCDC69","SLC2A1","SRPK1","CCR3","SND1","SRP72","RPL36","LENG8","SLC12A7","MDN1","BLTP1","TMSB10","ASB2","COX5A","LTA","ATP6V1G2-DDX39B","KLRD1","RPL28","PDE4D","MAP2K1","ARRB1","CCL3","TNFRSF1B","RPL6","FAM111A","XPO6","OXCT1","HP1BP3","SIRPG","ELAPOR1","ARPC5","COPG1","RPS19","CHD1L","BIRC3","HNRNPD","MOB1A","PATL2","PRPF6","LRRN3","ATM","SESN3","G3BP2","PSMD1","CYTIP","RPL36AL","CD96","OAS1","RPL10P6","ITGAX","UBASH3A","NRDC","AZIN1","BST2","ANKRD12","RPL23AP42","RPSAP12","CLTC","TRIM25","FURIN","DHX15","HNRNPA3","FCGBP","MT-CO2","RPL30","BTG2","EZR","ACTR1B","CCL22","FTL","RPL35A","CD27","EIF1","ARHGDIA","MDC1","ORMDL3","DNAJB1","PFKL","CBLL1","RPL14","NEAT1","PLIN2","SURF4","PSMB8","CD7","ARF1","LMNB2","TRAF1","RPS23","ATP8B4","NELL2","RPS13","GAS5","MYO1G","MT-CO3","CHD4","TMEM123","MAL","MATR3","RNF125","PTMS","ATXN2L","GBP2","HNRNPU","CDV3","YARS1","COPA","PGGHG","HDLBP","SSH1","PDE7A","HSP90B1","PRRC2C","RPS6KA3","SNX9","ERAP2","CAPZA1","HSH2D","EIF2AK1","CHMP7","RPS11P5","KIT","RASGRF2","MTND4P12","LARS1","APOBEC3C","ARHGEF6","KLRC4","RPL13AP25","OIP5-AS1","F2R","SEPTIN2","CAPG","PRKCA","RBL2","UBR5","FAM107B","PFKFB3","MX2","GRAMD1A","CD82","SFI1","NCOA4","TIGIT","RPN1","CRKL","SEC23B","HOPX","WSB1","EIF4B","C12orf75","PDE3B","ALOX5AP","AP2B1","CANX","SQOR","SYNCRIP","PRKCB","MIR124-1HG","EIF3CL","ATXN1","LAG3","KLRB1","CCR7","SLC2A3","ADD3","TRBV4-2","IFI44","DDX3Y","TNFAIP3","EIF2AK2","CXCR4","LPXN","CSF1","PIM1","IFITM2","RPL13A","HLA-DQA1","IFI44L","LINC01871","HSPA1B","RPS4Y1","PDCD4","RPL39","MTCO3P12"],"group":["Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Regulator","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target","Target"],"nodesize":[28,24,17,16,16,16,15,15,15,15,14,14,14,13,13,13,13,13,12,12,12,12,12,12,12,12,12,12,12,11,11,11,11,11,11,11,11,11,10,10,10,10,10,10,10,10,10,10,10,9,9,9,9,9,9,8,8,8,8,8,8,8,7,7,7,7,6,6,6,6,6,6,6,5,5,5,5,5,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal() .domain([\"Regulator\", \"Target\"]) .range([\"forestgreen\", \"orange\"])","fontSize":20,"fontFamily":"serif","clickTextSize":50,"linkDistance":50,"linkWidth":"function(d) { return Math.sqrt(d.value); }","charge":-30,"opacity":1,"zoom":true,"legend":true,"arrows":false,"nodesize":true,"radiusCalculation":" Math.sqrt(d.nodesize)+6","bounded":false,"opacityNoHover":0,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</details>
+<blockquote class="blockquote">
+<p>🤔 How would you go about intepreting this network in light of the fact that we have different experimental conditions and samples? Can you think of a way to integrate visually the information of the different CD8+ T cells subsets we have in the data?</p>
+</blockquote>
+</section>
+</section>
+<section id="recap" class="level1">
+<h1>Recap</h1>
+<p>Let’s go through what we have seen today:</p>
+<ul>
+<li>Learned about Differential Expression Analysis and what it is used for</li>
+<li>We performed the analysis on our CD8+ T cell dataset</li>
+<li>Managed to extract differentially-expressed genes</li>
+<li>Visualized the results in different ways, with each having its own strengths and weaknesses</li>
+<li>Interpreted the results with the help of downstream analysis including GSEA and Gene Ontology (GO)</li>
+</ul>
+</section>
+<section id="take-home-messages" class="level1">
+<h1>Take-home Messages 🏠</h1>
+<p>Congratulations! You got the end of the course and now hopefully <strong>know the main steps of a bulk RNA-seq data analysis workflow</strong>! Some of the <em>key concepts</em> that we have explored during the course can enable us to reach some distilled points of interest:</p>
+<ul>
+<li><p><strong>Design your experiments carefully</strong> with data analysis in mind!</p></li>
+<li><p><strong>Data needs to be carefully explored</strong> to avoid systematic errors in the analyses!</p></li>
+<li><p><strong>Plot and Visualize</strong> as much as possible!</p></li>
+<li><p>Not all information is useful, remeber that <strong>it all depends on the biological question</strong>!</p></li>
+<li><p>Omics outputs are immensely rich and <strong>one experiment can be used to answer a plethora of questions</strong>!</p></li>
+</ul>
+<center>
+<p><strong>And also remember that your computer is always right!</strong></p>
+<div class="tenor-gif-embed" data-postid="15542044" data-share-method="host" data-aspect-ratio="1.44796" data-width="60%">
+<a href="https://tenor.com/view/thumbs-up-nod-okay-gif-15542044">Thumbs Up Nod GIF</a>from <a href="https://tenor.com/search/thumbs+up-gifs">Thumbs Up GIFs</a>
+</div>
+<script type="text/javascript" async="" src="https://tenor.com/embed.js"></script>
+</center>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2026, Anna Grattagliano &amp; Mattia Toninelli</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

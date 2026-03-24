@@ -1,0 +1,65 @@
+---
+title: "Introduction"
+author: "Mattia Toninelli"
+date: last-modified 
+output: html_document
+always_allow_html: yes
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
+```
+
+## 👋🏻 What is this workshop about? 
+The course will give an overview on how to **conceptually approach bioinformatics**. During the three days of the course we will dive into a **bulk _RNA-seq_ experiment** and carry out the main steps of a standard data analysis pipeline.
+
+<center>
+
+<img src="../pics/rnaseq_workflow.png" width=800 />
+
+</center>
+
+# Program Outline
+
+## Day 1 🤓 
+- Setup RStudio or Posit
+- Get familiar with the Posit interface
+- Learn about bulk RNA-seq data processing
+- Download the data needed for the workshop
+
+## Day 2 🧑🏼‍💻
+- Learn about data normalization
+- Learn about the `edgeR` package
+- Explore different normalization methods
+- Normalize the data with functions provided by the `edgeR` package
+- Perform diagnostic and exploratory analysis on the data
+- Learn about the theory behind differential expression analysis
+- Perform differential expression analysis using `edgeR`
+
+## Day 3 🧙🏼‍♂️
+- Visualize differential genes
+- Perform further downstream analysis on interesting gene groups
+- Learn about the principles of `GSEA` and Gene Ontology
+- Create gene-regulatory networks (GRNs) with `ARACNE`
+
+## How To Reach Us
+
+- `Anna Grattagliano` (anna.grattagliano@ifom.eu)
+- `Mattia Toninelli` (mattia.toninelli@ifom.eu)
+
+<center>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.3904457401086!2d9.203071399999999!3d45.44178759999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c43e4304a3f5%3A0x80ca5dcc8bef68!2sIFOM%20%E2%80%A2%20Istituto%20Fondazione%20di%20Oncologia%20Molecolare%20ETS!5e0!3m2!1sit!2sit!4v1680169870014!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+**Feel free to drop us an e-mail if you have any curiosity or question!**
+
+</center>
+
+# Credits
+Some of the images and inspiration came from other tutorials available online, in particular [this work](https://nbisweden.github.io/workshop-ngsintro/) for images and [this work](https://hbctraining.github.io/DGE_workshop/lessons/02_DGE_count_normalization.html) for some of the information regarding data normalization. All of the code present within this site was developed and is readily implementable in [RStudio](https://posit.co/) using [RMarkdown](https://rmarkdown.rstudio.com/).
+
+# License
+All of the material in this course is under a [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (_CC BY 4.0_) which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.

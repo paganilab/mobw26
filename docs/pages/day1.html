@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Day 1 – 2026 Bioinformatics Workshop</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href=".././pics/net_icon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-20d5c32ef87b68b8f8983488454adb57.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src=".././pics/net_icon.png" alt="" class="navbar-logo light-content">
+    <img src=".././pics/net_icon.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">2026 Bioinformatics Workshop</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/preface.html"> 
+<span class="menu-text">Preface</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../pages/day1.html" aria-current="page"> 
+<span class="menu-text">Day 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/help.html"> 
+<span class="menu-text">Help</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/paganilab"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/LabPagani"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#using-rstudio-or-posit" id="toc-using-rstudio-or-posit" class="nav-link" data-scroll-target="#using-rstudio-or-posit">Using Rstudio or Posit</a></li>
+  <li><a href="#communicating-with-r" id="toc-communicating-with-r" class="nav-link" data-scroll-target="#communicating-with-r">Communicating with R</a>
+  <ul class="collapse">
+  <li><a href="#printing-text" id="toc-printing-text" class="nav-link" data-scroll-target="#printing-text">Printing Text</a></li>
+  <li><a href="#creating-variables" id="toc-creating-variables" class="nav-link" data-scroll-target="#creating-variables">Creating Variables</a></li>
+  <li><a href="#mathematical-operations" id="toc-mathematical-operations" class="nav-link" data-scroll-target="#mathematical-operations">Mathematical Operations</a></li>
+  <li><a href="#data-types-vectors-and-lists" id="toc-data-types-vectors-and-lists" class="nav-link" data-scroll-target="#data-types-vectors-and-lists">Data Types: Vectors and Lists</a></li>
+  <li><a href="#data-types-tables" id="toc-data-types-tables" class="nav-link" data-scroll-target="#data-types-tables">Data Types: Tables</a></li>
+  </ul></li>
+  <li><a href="#creating-a-script" id="toc-creating-a-script" class="nav-link" data-scroll-target="#creating-a-script">Creating a script</a></li>
+  <li><a href="#using-rmarkdown-to-create-useful-code-notebooks" id="toc-using-rmarkdown-to-create-useful-code-notebooks" class="nav-link" data-scroll-target="#using-rmarkdown-to-create-useful-code-notebooks">Using <code>rmarkdown</code> to create useful code “Notebooks”</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing packages</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-bulk-rna-seq" id="toc-introduction-to-bulk-rna-seq" class="nav-link" data-scroll-target="#introduction-to-bulk-rna-seq">Introduction to bulk RNA-seq</a>
+  <ul class="collapse">
+  <li><a href="#why-bulk-rna-sequencing" id="toc-why-bulk-rna-sequencing" class="nav-link" data-scroll-target="#why-bulk-rna-sequencing">Why bulk RNA sequencing?</a></li>
+  <li><a href="#experimental-workflow" id="toc-experimental-workflow" class="nav-link" data-scroll-target="#experimental-workflow">Experimental Workflow</a></li>
+  <li><a href="#how-can-we-design-a-bulk-rna-seq-experiment" id="toc-how-can-we-design-a-bulk-rna-seq-experiment" class="nav-link" data-scroll-target="#how-can-we-design-a-bulk-rna-seq-experiment">How can we design a bulk RNA-seq experiment?</a>
+  <ul class="collapse">
+  <li><a href="#replicates" id="toc-replicates" class="nav-link" data-scroll-target="#replicates">Replicates</a></li>
+  <li><a href="#avoiding-batch-effects" id="toc-avoiding-batch-effects" class="nav-link" data-scroll-target="#avoiding-batch-effects">Avoiding <em>batch</em> effects!</a></li>
+  </ul></li>
+  <li><a href="#how-do-we-go-from-mrna-to-sequences" id="toc-how-do-we-go-from-mrna-to-sequences" class="nav-link" data-scroll-target="#how-do-we-go-from-mrna-to-sequences">How do we go from mRNA to sequences?</a>
+  <ul class="collapse">
+  <li><a href="#gathering-rna-from-cells" id="toc-gathering-rna-from-cells" class="nav-link" data-scroll-target="#gathering-rna-from-cells">Gathering RNA from cells</a></li>
+  <li><a href="#interested-in-different-species-of-rna" id="toc-interested-in-different-species-of-rna" class="nav-link" data-scroll-target="#interested-in-different-species-of-rna">Interested in different species of RNA?</a></li>
+  <li><a href="#producing-a-library" id="toc-producing-a-library" class="nav-link" data-scroll-target="#producing-a-library">Producing a <em>library</em></a></li>
+  <li><a href="#next-generation-sequencing" id="toc-next-generation-sequencing" class="nav-link" data-scroll-target="#next-generation-sequencing">Next Generation Sequencing</a></li>
+  </ul></li>
+  <li><a href="#raw-sequencing-output" id="toc-raw-sequencing-output" class="nav-link" data-scroll-target="#raw-sequencing-output">Raw Sequencing Output</a></li>
+  <li><a href="#quality-metrics-inspection" id="toc-quality-metrics-inspection" class="nav-link" data-scroll-target="#quality-metrics-inspection">Quality Metrics Inspection</a></li>
+  <li><a href="#read-alignment" id="toc-read-alignment" class="nav-link" data-scroll-target="#read-alignment">Read Alignment</a>
+  <ul class="collapse">
+  <li><a href="#but-what-is-a-reference-genome-really" id="toc-but-what-is-a-reference-genome-really" class="nav-link" data-scroll-target="#but-what-is-a-reference-genome-really">But what is a reference genome really?</a></li>
+  </ul></li>
+  <li><a href="#counting-transcripts" id="toc-counting-transcripts" class="nav-link" data-scroll-target="#counting-transcripts">Counting Transcripts</a></li>
+  </ul></li>
+  <li><a href="#data-loading-and-exploratory-analyses" id="toc-data-loading-and-exploratory-analyses" class="nav-link" data-scroll-target="#data-loading-and-exploratory-analyses">Data Loading and Exploratory Analyses</a>
+  <ul class="collapse">
+  <li><a href="#where-does-all-published-data-end-up" id="toc-where-does-all-published-data-end-up" class="nav-link" data-scroll-target="#where-does-all-published-data-end-up">Where does all published data end up?</a></li>
+  <li><a href="#what-data-are-we-going-to-use-what-is-our-question" id="toc-what-data-are-we-going-to-use-what-is-our-question" class="nav-link" data-scroll-target="#what-data-are-we-going-to-use-what-is-our-question">What data are we going to use? What is our question?</a></li>
+  <li><a href="#loading-the-data" id="toc-loading-the-data" class="nav-link" data-scroll-target="#loading-the-data">Loading The Data</a></li>
+  <li><a href="#exploring-metadata" id="toc-exploring-metadata" class="nav-link" data-scroll-target="#exploring-metadata">Exploring Metadata</a>
+  <ul class="collapse">
+  <li><a href="#making-graphs-and-figures-in-r" id="toc-making-graphs-and-figures-in-r" class="nav-link" data-scroll-target="#making-graphs-and-figures-in-r">Making graphs and figures in <code>R</code></a></li>
+  </ul></li>
+  <li><a href="#savingloading-files" id="toc-savingloading-files" class="nav-link" data-scroll-target="#savingloading-files">Saving/Loading Files</a></li>
+  </ul></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Day 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li><em>Setup RStudio or Posit</em></li>
+<li><em>Get familiar with the RStudio interface</em></li>
+<li><em>Learn how to communicate with R and interact with objects</em></li>
+<li><em>Learn about bulk RNA-seq data processing</em></li>
+<li><em>Download the data needed for the workshop</em></li>
+</ul>
+</section>
+<section id="setup" class="level1">
+<h1>Setup</h1>
+<section id="using-rstudio-or-posit" class="level2">
+<h2 class="anchored" data-anchor-id="using-rstudio-or-posit">Using Rstudio or Posit</h2>
+<p>If RStudio is not installed on your computer, you can create a free account on <a href="https://posit.cloud/"><em>posit.cloud</em></a>. Create the account with your credentials and <strong>follow the instructions to create a new project</strong>. Once done, you should see something like this on your screen:</p>
+<center>
+<p><img src="../pics/posit_project.png" width="800"></p>
+</center>
+<p>This is your working interface, the <strong>bottom right section</strong> shows your <em>current file system</em> (on the cloud) which is now pointed to the place where the <code>Rproject</code> you just created lives. The <strong>section on the left currently displays your console</strong>, where <strong>you can type <code>R</code> code <em>interactively</em></strong>.</p>
+</section>
+<section id="communicating-with-r" class="level2">
+<h2 class="anchored" data-anchor-id="communicating-with-r">Communicating with R</h2>
+<p>You should see your cursor on the left-hand side of the screen blinking. That window represents the <strong><em><code>R</code> console</em></strong>. It can be used to “talk” with R through commands that it can understand!</p>
+<section id="printing-text" class="level3">
+<h3 class="anchored" data-anchor-id="printing-text">Printing Text</h3>
+<p>For example, try typing the following in the console and check what comes out (a.k.a. the <em>output</em>):</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tell R to print out some words on screen with the "print" command</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hello World!"</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-variables" class="level3">
+<h3 class="anchored" data-anchor-id="creating-variables">Creating Variables</h3>
+<p>One of the main aspects of any programming language including <code>R</code> is the ability to create <em><strong>variables</strong></em>. You can think of variables as ways to <em>store</em> objects under any given name. Let’s take the previous example and store the <code>Hello World!</code> character (known as a <em>string</em>) in a variable that we call <code>my_variable</code>. The creation of a variable in <code>R</code> is classically done through the <em>assignment operator</em> <code>&lt;-</code> (or a classic <code>=</code>).</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's assign the statement to a variable (nothing happens when running this code)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>my_variable <span class="ot">&lt;-</span> <span class="st">"Hello World!"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's display the content of the new variable!</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(my_variable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hello World!"</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>💡 <strong>What happened in the top right part of your screen when you ran the code lines above? Check out the “environment” section, you should see that <code>my_variable</code> appeared there!</strong></p>
+</blockquote>
+</section>
+<section id="mathematical-operations" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-operations">Mathematical Operations</h3>
+<p>As we said, the <code>R</code> language was built with statistics in mind, hence we can use it to perform mathematical operations with ease, much <strong>like a fancy calculator</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">6</span> <span class="sc">/</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</section>
+<section id="data-types-vectors-and-lists" class="level3">
+<h3 class="anchored" data-anchor-id="data-types-vectors-and-lists">Data Types: Vectors and Lists</h3>
+<p>In <code>R</code>, numbers, text and combination of the two can be represented in either vectors or lists. You can think of lists as an extension of vectors where elements can be heterogeneous and named. Let’s create a vector with numbers (with the <code>c()</code> command) and use it to display the way that <strong>functions</strong> work in <code>R</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>myvector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s find the mean value of this vector! Now we can either do this manually by summing all its elements and divide by their number, or we can use a function to do so, intuitively enough, the function we can use is the <code>mean()</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(myvector)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.5</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>💡 You can think of functions as a small piece of code that does something that normally would be done many times by repeating the code itself. Functions avoid the need for code repetition. We will encounter many functions later on, simple ones like <code>c()</code> and very complex ones!</p>
+</blockquote>
+</section>
+<section id="data-types-tables" class="level3">
+<h3 class="anchored" data-anchor-id="data-types-tables">Data Types: Tables</h3>
+<p>Without going too much into the details of all the available objects used to store data in <code>R</code>, one of the most abundantly used is the <code>data.frame</code>. Think of <code>data.frame</code>s as the <code>R</code> equivalent of Excel spreadsheets, so <strong>a way to store <em>tabular</em> data</strong>. As we will see later, pretty much all the data we are going to handle will be in the form of a <code>data.frame</code> or some of its other variations. In the end, you can think of a table as a collection of lists of the same length (each column being one).</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's create and display a data frame (a table) with four rows and two columns</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="st">"Class"</span><span class="ot">=</span><span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>), <span class="co"># First column</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Quantity"</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">6</span>)) <span class="co"># Second column</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Class Quantity
+1     a        1
+2     b       10
+3     c        4
+4     d        6</code></pre>
+</div>
+</div>
+<p>You have now instructed <code>R</code> to do something for you! We will ask it to do plenty more in the code chunks below!</p>
+</section>
+</section>
+<section id="creating-a-script" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-script">Creating a script</h2>
+<p>In the console we can type as many commands as we want and execute them sequentially. Nevertheless, <strong>commands typed in the console are lost the moment they are executed</strong> and if we want to execute them again we need to type everything back in the console all over again… <strong>this is painful</strong>!</p>
+<p>A <strong><em>script</em> is just a normal text file (a very primitive version of Word without the fancy formatting) which groups a series of commands that R can execute sequentially</strong>, reading the file <em>line-by-line</em>. This is much better because we can then <strong>edit the file and save the changes</strong>!</p>
+<blockquote class="blockquote">
+<p>💡 Since the text file is read by <code>R</code> line-by-line it is essential that you get the order of operations correctly, otherwise <code>R</code> will get easily confused. In this case it is useful to think of a script as a cooking recipe where the order of operations is paramount! 👨🏻‍🍳</p>
+</blockquote>
+<p>Follow the movie below to create an <code>R</code> script in Posit, the same applies to Rstudio, notice the <code>.R</code> extension at the end of the file name.</p>
+<center>
+<p><img width="800" src="../pics/script_creation.gif" img=""></p>
+</center>
+<p>The new window that appeared on the upper left represents your R script. <strong>In here we can write R code which DOES NOT get executed immediately like in the console before</strong>.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>In order to execute code from the script, highlight the code line you want to execute (or put your cursor line on it) and press <kbd>⌘</kbd>+<kbd>Enter</kbd> on Mac or <kbd>Ctrl</kbd>+<kbd>Enter</kbd> on Windows.</strong></p>
+</blockquote>
+</section>
+<section id="using-rmarkdown-to-create-useful-code-notebooks" class="level2">
+<h2 class="anchored" data-anchor-id="using-rmarkdown-to-create-useful-code-notebooks">Using <code>rmarkdown</code> to create useful code “Notebooks”</h2>
+<p>A script is just a plain text file that gets read by <code>R</code>. Using <code>Rstudio</code> we can also take advantage of <code>rmarkdown</code>, which is a different and prettier way of writing code mixed with textual information. The beauty of it is that in a single file you can have actual <code>R</code> code in “<em>chunks</em>” and normal text that you can use to include information on the code or write down some notes! Let’s now create a markdown file that we can use to perform the analysis later on. in <code>Rstudio</code>, click on the “+ File” icon in the bottom right file explorer and select “R Markdown”. You should see a new file opening on the top left part of your <code>Rstudio</code> window.</p>
+<p>Now in this file you can write everything you want using the <code>markdown</code> syntax! Things you write will not be executed by <code>R</code> so you can think of these as notes you can use. If you want to insert a piece of script called <code>chunk</code> that you wish to submit to <code>R</code>, click on the <img src="../pics/insert_chunk.png" height="16px"> button and select <code>R</code>. In the file you should see a new portion of text appearing that looks like the following:</p>
+<center>
+<p><img width="800" src="../pics/markdown_cells.png" img=""></p>
+</center>
+<blockquote class="blockquote">
+<p>💡 You can run the code inside a cell by using the green arrow button on the top right!</p>
+</blockquote>
+<p>Just to give you an idea of how nice and powerful <code>rmarkdown</code> is, this whole website has been built using it and the code chunks you see in this site are actual <code>R</code> code blocks inside an <code>rmarkdown</code> file!</p>
+</section>
+<section id="installing-packages" class="level2">
+<h2 class="anchored" data-anchor-id="installing-packages">Installing packages</h2>
+<p>The analyses that we are going to conduct require specific <strong>packages</strong>. In R, <strong>packages are <em>collections of functions</em></strong> which help us perform standardized workflows. In the <strong>code chunk</strong> below, we instruct R to install the packages that we will need later on throughout the workshop.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Copy and paste this and the other <em>code chunks</em> from here to your R script to follow.</strong></p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages from Bioconductor</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"BiocManager"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages from CRAN</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyr"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rmarkdown"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># For differential expression</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"vsn"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"edgeR"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"statmod"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># For visualizations</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"hexbin"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pheatmap"</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"RColorBrewer"</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggrepel"</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggpubr"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"png"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggarchery"</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># For conversion between gene IDs</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"org.Hs.eg.db"</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># For downstream analyses</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"msigdbr"</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"fgsea"</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"clusterProfiler"</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"BioNERO"</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'networkD3'</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove garbage</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>During the installation, you will see many messages being displayed on your <em><code>R</code> console</em>, don’t pay too much attention to them unless they are <span style="color: red;">red and specify an error</span>!</p>
+<p>If you encounter any of these messages during installation, follow this procedure here:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R asks for package updates, answer "n" and type enter</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Question displayed:</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>Update all<span class="sc">/</span>some<span class="sc">/</span>none? [a<span class="sc">/</span>s<span class="sc">/</span>n]<span class="sc">:</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Answer to type:  </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>n</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># R asks for installation from binary source, answer "no" and type enter</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Question displayed:</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>Do you want to install from sources the packages which need compilation? (Yes<span class="sc">/</span>no<span class="sc">/</span>cancel)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Answer to type:</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>no</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Hopefully all packages were correctly installed and now we can dive a bit deeper into the theoretical basics of RNA sequencing!</p>
+</section>
+</section>
+<section id="introduction-to-bulk-rna-seq" class="level1">
+<h1>Introduction to bulk RNA-seq</h1>
+<p>With bulk RNA sequencing technologies, the goal is to capture <strong>average gene expression levels</strong> across pooled cell populations of interest. This is achieved by capturing all RNA transcripts from a sample and sequencing them in an automated way to ensure the adequate throughput needed for answering the biological hypotheses behind the experiment. The main limitation of bulk RNA-seq is that we lose the ability to distinguish between gene expression profiles of rare cell populations.</p>
+<blockquote class="blockquote">
+<p>🤔 What are some of the key differences between RNA sequencing and qPCR?</p>
+</blockquote>
+<section id="why-bulk-rna-sequencing" class="level2">
+<h2 class="anchored" data-anchor-id="why-bulk-rna-sequencing">Why bulk RNA sequencing?</h2>
+<p>The motivations behind an RNA sequencing experiment can be summarized between gathering a set of both <strong>quantitative</strong> but also <strong>qualitative</strong> observations.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantitative</th>
+<th>Qualitative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identify <em>differentially expressed</em> genes</td>
+<td><em>Annotate</em> transcripts</td>
+</tr>
+<tr class="even">
+<td>Detect different <em>Isoform</em> expression</td>
+<td><em>Alternative splicing</em> analysis</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Identify <em>gene fusion</em> events</td>
+</tr>
+</tbody>
+</table>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><img src="https://nbisweden.github.io/workshop-ngsintro/2403/topics/rnaseq/assets/rnaseq_transcription.svg" width="600"></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+</section>
+<section id="experimental-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="experimental-workflow">Experimental Workflow</h2>
+<p>A bulk RNA-seq experiment is articulated in the following steps:</p>
+<ul>
+<li><p><strong>Experimental design</strong>: sample choice and hypothesis</p></li>
+<li><p><strong>RNA extraction</strong></p></li>
+<li><p><strong>cDNA preparation</strong>: retrotranscription of RNA molecules</p></li>
+<li><p><strong>Library preparation</strong>: fragmentation of cDNA molecules and ligation of adapters</p></li>
+<li><p><strong>Sequencing</strong></p></li>
+<li><p><strong>Data processing</strong>: raw read QC</p></li>
+<li><p><strong>Data analysis</strong>: extract meaningful biological insights</p></li>
+</ul>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><img src="../pics/rnaseq_protocol.png" width="750"></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+</section>
+<section id="how-can-we-design-a-bulk-rna-seq-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="how-can-we-design-a-bulk-rna-seq-experiment">How can we design a bulk RNA-seq experiment?</h2>
+<p>A well thought-out experimental design is a crucial factor in achieving success. The best strategy will primarily depend on the experiment’s goals, the hypotheses being tested, and the type of data expected to be obtained.</p>
+<section id="replicates" class="level3">
+<h3 class="anchored" data-anchor-id="replicates">Replicates</h3>
+<p>Replication is a key part of the scientific method and bulk RNA-seq experiments are no exception to the norm. Guideline suggest to perform 2-5 replicates for each condition of interest!</p>
+<blockquote class="blockquote">
+<p>🤔 Do you know what the differences between a <em>technical</em> and <em>biological</em> replicates are?</p>
+</blockquote>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><img src="../pics/replicates.png" width="600"></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<p><strong>Technical Replicates</strong>: use the <em>same</em> biological specimen (sample) from the <em>same</em> experimental condition to repeat the technical or experimental steps in order to accurately measure technical variation and remove it during analysis. These are normally dispensable given the low technical variation with NGS technologies.</p>
+<p><strong>Biological Replicates</strong>: use <em>different</em> biological samples of the <em>same</em> condition to measure the biological variation between samples. Of key importance for the analysis. The higher the number of biological replicates, the more precise the estimate of average gene expression. They’re even more important than sequencing depth in defining differentially expressed genes with confidence.</p>
+</section>
+<section id="avoiding-batch-effects" class="level3">
+<h3 class="anchored" data-anchor-id="avoiding-batch-effects">Avoiding <em>batch</em> effects!</h3>
+<p>Batch effect refers to the <strong>unwanted variability</strong> in data that arises due to differences in how samples are processed, handled, or analyzed across different experimental batches or conditions, rather than being due to the biological variation of interest.</p>
+<p>Sources of batch effect can arise from:</p>
+<ul>
+<li>sample collection strategies</li>
+<li>processing differences</li>
+<li>equipment and instrumentation</li>
+<li>library preparation time</li>
+<li>sequencing time</li>
+</ul>
+<blockquote class="blockquote">
+<p>💡 If you cannot avoid batch effects, do not confound your experiment by batch but instead <strong>randomize samples across batches</strong>!</p>
+</blockquote>
+<p>What follows is a basic yet intuitive visualization of what the above phrase means in practice… in a <strong>poorly-designed</strong> experiment:</p>
+<center>
+<p><img src="../pics/confounded_design.png" width="500"></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<p>And in a <strong>well-designed</strong> experiment with following analyses in mind:</p>
+<center>
+<p><img src="../pics/non_confounded_design.png" width="500"></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<p>This approach ensures that any potential batch effects — such as differences in RNA extraction, handling, or processing — are equally represented in both the control and treatment groups, thereby helping to <strong>isolate biological variation from technical noise</strong>.</p>
+<p><strong>e.g</strong> If you need to extract RNA in two batches due to the number of samples, avoid extracting only control samples in one batch and only treated samples in the second one. Doing so could introduce batch-specific technical variations that would make it difficult to differentiate between true biological differences and technical artifacts. Instead, ensure that you equally distribute control and treated samples across both batches.</p>
+<blockquote class="blockquote">
+<p>🤔 Could you think about another example of how to avoid batch effect in your experimental set up?</p>
+</blockquote>
+</section>
+</section>
+<section id="how-do-we-go-from-mrna-to-sequences" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-go-from-mrna-to-sequences">How do we go from mRNA to sequences?</h2>
+<section id="gathering-rna-from-cells" class="level3">
+<h3 class="anchored" data-anchor-id="gathering-rna-from-cells">Gathering RNA from cells</h3>
+<p>The first step is of course to materially extract RNA molecules from our set of cells of interest!</p>
+<p>Most commonly used extraction methods are <strong>organic extraction methods</strong> (phenol-containing solutions) or <strong>filter-based</strong> (membranes). Then, in order to <em>eliminate DNA contamination</em> in your sample and increase RNA purity, DNAse treatment is performed. Certain forms of contamination can be detected using UV spectroscopy and the calculation of absorbance ratios. Good quality RNA will have an A260/280 ratio of 1.7 to 2.1 and A260/230 of 2.0 to 2.2. A260/280 lower than 1.7 may indicate protein contamination, whereas A260/230 less than 1.8 may indicate the presence of organics (e.g.&nbsp;phenol or guanidine) leftover from the extraction protocol.</p>
+<blockquote class="blockquote">
+<p>🚨 Degradation of RNA breaks up long RNA molecules into shorter fragments, that are more difficult to assemble bioinformatically, and therefore RNA sequence information can be lost!</p>
+</blockquote>
+<p>Following that, RNA is quantified and its integrity evaluated (by agarose gel electrophoresis or by <em>Bioanalyzer</em> or Tape station). With both methods you should recognize the most abundant RNAs in our cells: the ribosomal subunits 18S and 28S (that should be twice 18S). The image below shows 3 bioanalyzer profiles at decreasing levels of <strong>RIN</strong> (RNA Integrity Number).</p>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><img src="../pics/bioanalyzer.png" width="350"></p>
+</center>
+<blockquote class="blockquote">
+<p>🤔 Based on what we’ve said about batch effects, would you use the same RNA extraction protocol or different ones for your samples and/or conditions?</p>
+</blockquote>
+</section>
+<section id="interested-in-different-species-of-rna" class="level3">
+<h3 class="anchored" data-anchor-id="interested-in-different-species-of-rna">Interested in different species of RNA?</h3>
+<p>As we know RNA can come in many forms and functions, so depending on your research interest, you might be prompted to look at specific RNA species over others. This means that we need to <strong>enrich</strong> for specific sets of RNA molecules among the many ones that cells produce to function! Below we can find a series of protocols optimized to capture different RNA species:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Application</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Poly(A) selection</strong></td>
+<td>mRNA sequencing</td>
+<td>Excludes non-polyadenilated species (rRNAs, tRNAs)</td>
+</tr>
+<tr class="even">
+<td><strong>rRNA Depletion</strong></td>
+<td>mRNA, small RNAs and lncRNAs</td>
+<td>Can reduce total RNA yield</td>
+</tr>
+<tr class="odd">
+<td><strong>Total RNA-seq</strong></td>
+<td>Comprehensive transcriptome analysis</td>
+<td>High rRNA content and reduced overall sensitivity</td>
+</tr>
+<tr class="even">
+<td><strong>miRNA Enrichment</strong></td>
+<td>Small RNA sequencing (miRNAs, snoRNAs, etc.)</td>
+<td>Excludes large RNAs, and only focuses on small RNA species</td>
+</tr>
+<tr class="odd">
+<td><strong>Capture-based Enrichment</strong></td>
+<td>Targeted RNA sequencing</td>
+<td>Only focuses on specific sequences, not suitable for global analysis</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="producing-a-library" class="level3">
+<h3 class="anchored" data-anchor-id="producing-a-library">Producing a <em>library</em></h3>
+<p>Starting from our precious mRNA molecule that has been isolated from our sample, we transform it into DNA by means of <em>retrotranscription</em>, this process creates what is known as <strong>cDNA</strong>. cDNA molecules can be very large and due to technical constraints we need to fragment them into smaller pieces. All these pieces are then ligated to a set of sequences known as <strong>adapters</strong>.</p>
+<center>
+<p><img src="https://raw.githubusercontent.com/NBISweden/workshop-ngsintro/a4d8e1da73bc2a6997c350c52deb4b377e3df2e8/topics/rnaseq/assets/rnaseq_library_prep.svg" width="300"></p>
+</center>
+<p>Importantly, Since there are many genomic regions that generate transcripts from both strands, <strong>identifying the polarity of a given transcript</strong> provides essential information about the possible function of a gene.</p>
+<p>However, in canonical <strong>NON-STRANDED</strong> library preparation random primers are used for first- and second-strand synthesis of cDNA. The resulting sequencing products from the two antisense transcripts are identical and cannot be distinguished when sequenced. Thus, information about directionality is lost during cDNA synthesis.</p>
+<center>
+<p><img src="../pics/stranded.png" width="800"></p>
+</center>
+<p>On the contrary, <strong>STRAND-SPECIFIC</strong> library preparation distinguishes the first and second strands of cDNA by incorporating uracil instead of thymine to label the second strand. After adapter ligation, amplification of the second strand is blocked. This can be accomplished by performing uracil-specific digestion before amplification or by using a DNA polymerase that is unable to amplify uracil-containing templates. As a result, all sequencing products from a particular RNA molecule will have the same orientation.</p>
+</section>
+<section id="next-generation-sequencing" class="level3">
+<h3 class="anchored" data-anchor-id="next-generation-sequencing">Next Generation Sequencing</h3>
+<p>Next Generation Sequencing technologies (Illumina/PacBio) allow experimenters to capture the entire genetic information in a sample in a completely unsupervised manner. The process works with an approach called <strong>sequencing-by-synthesis</strong> or SBS for short.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Great info can be found at the <a href="https://knowledge.illumina.com/software/general/software-general-reference_material-list/000002211">Illumina Knowledge page</a></strong></p>
+</blockquote>
+<p>This means that <strong>strands are sequenced by re-building them</strong> using the natural complementarity principle of DNA with fluorescently labelled bases which get detected and decoded into sequences. On illumina <em>flow-cells</em> this process happens in <strong>clusters</strong>, to allow for proper signal amplification and detection, as shown in the movie below.</p>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fCd6B5HRaZ8" title="Illumina SBS sequencing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<p>As we have seen in the video, adapter sequences are used by the sequencing machine to hybridize cDNA fragments to the flow cell and form sequencing clusters.</p>
+<p>A few key parameters to consider when using NGS technologies (and this holds true for all involved <em>omics</em> approaches) include:</p>
+<ul>
+<li><p><strong>Sequencing Depth</strong>: as the name suggests, this represents the final objective in terms of number of reads obained in the experiment, we can go shallow for a quick snapshot of highly expressed genes (5 to 30 million reads), or very deep to catch that rarely expressed variant we are interested in (150 to 200 million reads)!</p></li>
+<li><p><strong>Read Length</strong>: this is another parameter set by the operator and determines the amount of snapshots we take of the flowcell with its clusters after each hibridization round determining “how far into” the cDNA molecule we look (typically 50 to 75 bp) - longer reads are useful if we are aiming for novel transcript assembly and isoform identification.</p></li>
+<li><p><strong>Sequencing Mode</strong>: we can either sequence our library from one side in <em>single-end</em> mode or from both sides of each insert using <em>paired-end</em> sequencing which generates two reads per fragment. The latter is more expensive but fondamental for the detection of gene isoforms since we get more information.</p></li>
+</ul>
+<center>
+<p><img src="../pics/se_vs_pe.png" width="600"></p>
+</center>
+<blockquote class="blockquote">
+<p>💡 Additional information and guidelines on sequencing depth and read lenght can be found on <a href="https://genome.ucsc.edu/ENCODE/">ENCODE Consortium</a>’s website!</p>
+</blockquote>
+</section>
+</section>
+<section id="raw-sequencing-output" class="level2">
+<h2 class="anchored" data-anchor-id="raw-sequencing-output">Raw Sequencing Output</h2>
+<p>The <strong>raw output</strong> of any sequencing run consists of a series of sequences (called <strong><em>reads</em></strong>). These sequences can have varying length based on the run parameters set on the sequencing platform. Nevertheless, <strong>they are made available for humans to read under a standardized file format known as FASTQ</strong>. This is the universally accepted format used to encode sequences after sequencing. An example of real FASTQ file with only two <strong><em>reads</em></strong> is provided below.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Seq1</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>AGTCAGTTAAGCTGGTCCGTAGCTCTGAGGCTGACGAGTCGAGCTCGTACG</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>BBBEGGGGEGGGFGFGGEFGFGFGGFGGGGGGFGFGFGGGFGFGFGFGFG</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Seq2</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>TGCTAAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGC</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>FASTQ files are an intermediate file in the analysis</strong> and are used to assess quality metrics for any given sequence. The <strong>quality of each base call</strong> is encoded in the line after the <code>+</code> following the standard <a href="https://en.wikipedia.org/wiki/Phred_quality_score"><strong>Phred score</strong></a> system.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Since we now have an initial metric for each sequence, it is mandatory to conduct some standard quality control evaluation of our sequences to eventually spot technical defects in the sequencing run early on in the analysis.</strong></p>
+</blockquote>
+</section>
+<section id="quality-metrics-inspection" class="level2">
+<h2 class="anchored" data-anchor-id="quality-metrics-inspection">Quality Metrics Inspection</h2>
+<p>Computational tools like <a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> aid with the <strong>visual inspection of per-sample quality metrics</strong> from NGS experiments. Some of the QC metrics of interest to consider include the ones listed below, on the <strong>left</strong> are optimal metric profiles while on the <strong>right</strong> are sub-optimal ones:</p>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><strong>Per-base Sequence Quality</strong> <img src="https://github.com/NBISweden/workshop-ngsintro/blob/main/topics/rnaseq/assets/pbsq.jpg?raw=true" width="800"> <em>This uses <strong>box plots</strong> to highlight the per-base quality along all <strong>reads in the sequencing experiment, we can notice a physiological drop in quality towards the end part of the read</strong>.</em></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><strong>Per-sequence Quality Scores</strong> <img src="https://github.com/NBISweden/workshop-ngsintro/blob/main/topics/rnaseq/assets/psqs.jpg?raw=true" width="800"> <em>Here we are plotting the <strong>distribution of Phred scores</strong> across all identified sequences, we can see that the high quality experiment (left) has a peak at higher Phred scores values (34-38).</em></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><strong>Per-base Sequence Content</strong> <img src="https://github.com/NBISweden/workshop-ngsintro/blob/main/topics/rnaseq/assets/pbsc.jpg?raw=true" width="800"> <em>Here we check the sequence (read) base content, in a normal scenario we do not expect any dramatic variation across the full length of the read since we should see a quasi-balanced distribution of bases.</em></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><strong>Per-sequence GC Content</strong> <img src="https://github.com/NBISweden/workshop-ngsintro/blob/main/topics/rnaseq/assets/psgc.jpg?raw=true" width="800"> <em>GC-content referes to the <strong>degree at which guanosine and cytosine are present within a sequence</strong>, in NGS experiments which also include PCR amplification this aspect is crucial to check since GC-poor sequences may be enriched due to their easier <strong>amplification bias</strong>. In a normal random library we would expect this to have a bell-shaped distribution such as the one on the left.</em></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><strong>Sequence Duplication Levels</strong> <img src="https://github.com/NBISweden/workshop-ngsintro/blob/main/topics/rnaseq/assets/sdl.jpg?raw=true" width="800"> <em>This plot shows the degree of sequence duplication levels. In a normal library (left) we <strong>expect to have low levels of duplication</strong> which can be a positive indicator of high sequencing coverage.</em></p>
+</center>
+<div style="margin-bottom: 60px;">
+
+</div>
+<center>
+<p><strong>Adapter Content</strong> <img src="https://github.com/NBISweden/workshop-ngsintro/blob/main/topics/rnaseq/assets/ac.jpg?raw=true" width="800"> <em>In NGS experiments we use <strong>adapters</strong> to create a library. Sometimes these can get sequenced accidentally and end up being part of a <strong>read</strong>. This phenomenon can be spotted here and corrected later using a computational approach called <strong>adapter trimming</strong>, visible in next section’s figure.</em></p>
+</center>
+</section>
+<section id="read-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="read-alignment">Read Alignment</h2>
+<p>Once we are satisfied with the quality of our pool of sequences, we need to <strong>map them back to the transcripts to which they belonged originally when we produced cDNA molecules from RNA</strong>. This process of mapping is <strong>needed to understand from which genes were transcripts generated</strong> and therefore is an essential and very important step of data processing!</p>
+<center>
+<p><img src="https://github.com/NBISweden/workshop-ngsintro/blob/main/topics/rnaseq/assets/rnaseq_mapping.svg?raw=true" width="700"></p>
+<p><em>Alignment of <strong>trimmed reads</strong> to a reference genome or transcriptome.</em></p>
+</center>
+<section id="but-what-is-a-reference-genome-really" class="level3">
+<h3 class="anchored" data-anchor-id="but-what-is-a-reference-genome-really">But what is a reference genome really?</h3>
+<p>When we perform an RNA-seq experiment, we need to understand <em>where</em> the millions of reads that we get come from in the genome, in other words, which genes (by being transcribed) contribute to what degree to the amount of signal that we get in each experiment! Since every mRNA (hence cDNA) is different among individuals, we can use a <strong>general</strong> genome which is manually built and onto which we can place our reads to check for matches and mismatches.</p>
+<blockquote class="blockquote">
+<p>💡 The Human Genome Project for example released the very first assembled reference genome in 2003, using sequencing data coming from <em>at least</em> 10 different individuals and containing more than 3 billion bases! Currently, the most used “build” of the human genome is the one called GRCh37, released in 2013.</p>
+</blockquote>
+<p>Tools like <strong><a href="https://github.com/alexdobin/STAR">STAR</a></strong> and <strong><a href="https://github.com/lh3/bwa">BWA-MEM</a></strong> are designed to achieve great speed and accuracy for the computationally expensive task of read alignment.</p>
+<p>The results of the alignment procedure is a different set of files in <em>SAM</em> (Standard Alignment Map) format which get compressed into their binary representation, <strong>BAM files</strong>. These are usually one for each analyzed sample and encode the position of all the identified reads along the genome as well as alignment quality metrics for QC, which can be carried out with tools like <strong><a href="https://multiqc.info/">MultiQC</a></strong>.</p>
+<div style="margin-bottom: 40px;">
+
+</div>
+<center>
+<p><img src="../pics/igv_screen.png" width="700"></p>
+<p><em>IGV screenshot of a single BAM file showing reads at the GAPDH locus.</em></p>
+</center>
+<blockquote class="blockquote">
+<p>💡 All of these pre-processing steps, which are <em>computationally expensive</em>, are usually integrated in command-line pipelines which <strong>connect inputs and outputs of these difference procedures in a streamlined manner</strong>. An example is the RNA-seq pipeline provided by the <a href="https://nf-co.re/rnaseq">nf-core</a> community.</p>
+</blockquote>
+</section>
+</section>
+<section id="counting-transcripts" class="level2">
+<h2 class="anchored" data-anchor-id="counting-transcripts">Counting Transcripts</h2>
+<p>After sequences have been aligned to their respective place on the genome, it is time to actually count how many times a given sequence is found on any given gene (or transcripts, or exons or others..), <strong>this will actually be our gene expression measurement!</strong></p>
+<center>
+<p><img src="https://github.com/NBISweden/workshop-ngsintro/blob/main/topics/rnaseq/assets/rnaseq_counts.svg?raw=true" width="350"></p>
+</center>
+<p>There are many ways to achieve this task but among the most used is the <a href="https://subread.sourceforge.net/featureCounts.html"><code>featureCounts</code></a> tool. In the end, for every sample, we will end up with a number for each gene (or transcripts), these are called <strong>gene (transcript) counts</strong>.</p>
+<p>These are usually summarized in a table, called <em>gene expression table</em>, where <strong>each sample is a column and each row a different gene</strong>. We will now load one and take a closer look, this will be our starting point in the hands-on analysis of bulk RNA-seq data.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>What is the difference between a <em>gene</em> and a <em>transcript</em>?</strong></p>
+</blockquote>
+</section>
+</section>
+<section id="data-loading-and-exploratory-analyses" class="level1">
+<h1>Data Loading and Exploratory Analyses</h1>
+<section id="where-does-all-published-data-end-up" class="level2">
+<h2 class="anchored" data-anchor-id="where-does-all-published-data-end-up">Where does all published data end up?</h2>
+<p>Sequencing technologies have been widely adopted even before the early 2010s, with many fields and laboratories employing sequencing to answer all kinds of biologically relevant questions in the most diverse settings. But where does all that data go? How many experiments and Gb (or even Tb 😳) of data have been generated? How can you look for them? In which form are they stored?</p>
+<blockquote class="blockquote">
+<p>💡 These are all very relevant questions that deserve an answer! In fact, <strong>you might be thinking of an experiment that somebody around the world did 5 years ago already</strong>, knowing where to look for the data might save you loads of time and save your lab a few thousand euros!</p>
+</blockquote>
+<p>As we have seen, sequencing data is usually stored as <code>fastq</code> files, these are also known as <strong>raw</strong> files. Raw sequencing data is usually under <em>controlled access</em>. Since it contains raw genomic sequences, the data could be potentially linked to its original donor subject, hence it is considered <strong>sensitive data</strong>. Data use is regulated by different agencies and protocols worldwide.</p>
+<div style="margin-bottom: 40px;">
+
+</div>
+<center>
+<p><img src="../pics/ena_screen.png" width="800"></p>
+</center>
+<p>Down here we report some of the main sources of raw sequences.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Archive</th>
+<th>Name</th>
+<th>Data Type</th>
+<th>Country</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://www.ebi.ac.uk/ena/browser/home">ENA</a></td>
+<td>European Nucleotide Archive</td>
+<td>Raw</td>
+<td>Europe (EMBL)</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.ncbi.nlm.nih.gov/sra">SRA</a></td>
+<td>Sequence Read Archive</td>
+<td>Raw</td>
+<td>USA (NCBI)</td>
+</tr>
+<tr class="odd">
+<td><a href="https://ega-archive.org/">EGA</a></td>
+<td>European Genome-phenome Archive</td>
+<td>Raw</td>
+<td>Europe</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.ddbj.nig.ac.jp/index-e.html">DDBJ</a></td>
+<td>DNA DataBank of Japan</td>
+<td>Raw</td>
+<td>Japan</td>
+</tr>
+<tr class="odd">
+<td><a href="https://ngdc.cncb.ac.cn/omix/">OMIX</a></td>
+<td>National Genomics Data Center Database</td>
+<td>Raw/Processed</td>
+<td>China</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="what-data-are-we-going-to-use-what-is-our-question" class="level2">
+<h2 class="anchored" data-anchor-id="what-data-are-we-going-to-use-what-is-our-question">What data are we going to use? What is our question?</h2>
+<p>We will load a table of data from <a href="https://www.nature.com/articles/s41467-022-35583-w">this study</a> published in <em>Nature Communications</em> on tumor-infiltrating CD8+ T-cells. The original data supporting the findings of the study has been deposited on the <strong>Gene Expression Omnibus</strong> (GEO) data portal under accession number <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120575">GSE120575</a>. This is the <strong>place where all studies publish the <em>processed</em> sequencing data from their analysis</strong> in order for other researchers to download it and reproduce their findings or test their own hypotheses.</p>
+<div style="margin-bottom: 40px;">
+
+</div>
+<center>
+<p><img src="../pics/nature_comms.png" width="600"></p>
+</center>
+<div style="margin-bottom: 40px;">
+
+</div>
+<center>
+<p><img src="../pics/ga_gse120575.png" width="800"></p>
+</center>
+<p>Briefly, the authors collected bulk RNA-seq data from different subpopulations of transgenic CD8+ T cells including ones known as <em>exhausted</em> which are particularly relevant in the context of cancer immunotherapy. These cells are in fact consistently exposed to antigens in the tumor microenvironment and become dysfunctional, unable to fight cancer cells which are therefore free to keep expanding. Understanding and preventing the process of T cell exhaustion poses and interesting and relevant challenge in the field of immunotherapies for a variety of cancer types.</p>
+</section>
+<section id="loading-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-data">Loading The Data</h2>
+<p><strong>We have already downloaded the data and inserted it in a Google Drive <a href="https://drive.google.com/drive/folders/18Rqj2hQ_KAjGVtN8fy2wdvbCUI2c6ruE?usp=sharing">folder</a> organizing it as follows:</strong></p>
+<ul>
+<li><p><code>raw_counts.csv</code>: the gene by sample matrix containing the number of times each gene is detected in each sample (our gene expression values)</p></li>
+<li><p><code>samples_info.csv</code>: the table containing samples information, known as <em>metadata</em>, which tells us about the biological meaning of each sample</p></li>
+</ul>
+<p>Open the folder through your Google Drive (<strong>this step is important</strong>), check the presence of the files in the browser and then only AFTER having done this, run the code below. After having opened the Google Drive folder, follow the code chunk below where we are going to load the data and <strong>create two new variables in our <code>R</code> session</strong>, one for each table.</p>
+<blockquote class="blockquote">
+<p>🚨 <strong>NOTE</strong>: After you run the code below, look into your <code>R</code> console and check if you are prompted to insert your Google account information. Do so and then follow the instructions to connect to your Google account in order to download the data from the shared MOBW2025 folder!</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load installed packages with the "library()" function</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load files (make sure that you have them in your `data` folder!)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 1: gene counts</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/raw_counts.csv"</span>) </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(counts) <span class="ot">&lt;-</span> counts<span class="sc">$</span>X</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>counts<span class="sc">$</span>X <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 2: sample information (metadata)</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"./data/samples_info.csv"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(samples) <span class="ot">&lt;-</span> samples<span class="sc">$</span>X </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> samples[,<span class="fu">c</span>(<span class="st">"Donor"</span>,<span class="st">"SampleGroup"</span>,<span class="st">"sex"</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can now <strong>explore the data that we have just loaded in the current R session</strong> to familiarize with it.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check out the counts</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(counts, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204446</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204447</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204448</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204449</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204450</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204451</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204452</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204453</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204458</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204459</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204460</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204461</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204462</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204463</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204464</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">BSSE_QGF_204465</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000228572</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000182378</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000226179</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000281849</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000280767</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000185960</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LRG_710</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000237531</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENSG00000198223</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENSG00000265658</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We can then check the shape of our counts table (i.e.&nbsp;how many different transcripts we are detecting and how many different samples?)</p>
+<blockquote class="blockquote">
+<p>🤔 How many rows are we expecting to be present in our counts table? <em>hint</em>: think of the type of experiment and the readout we are expecting!</p>
+</blockquote>
+<p>We can see that our table contains count information for 16 samples.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>In R, these table object are called <code>data.frames</code>, <code>tibbles</code> are just like them but with some improved functionalities provided by the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> library.</strong></p>
+</blockquote>
+<p>We can also inspect the <strong>metadata</strong> from the samples which is stored in the <code>samples</code> variable we created above.</p>
+</section>
+<section id="exploring-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-metadata">Exploring Metadata</h2>
+<p>Metadata refers to that <em>class of accessory data</em> to the main experimental readout. In the case of this published dataset, the <em>main</em> data refers to the actual gene expression table with the associated counts measurement for each sample. Each sample then has associated information used to further describe it (e.g.&nbsp;type of cells, patient ID, treatment status, experimental batch…), as we have previously seen, this information is instrumental to bioinformaticians to avoid pitfalls in the analysis. In the case of our data, this information is contained in the <code>samples</code> table. We can use <code>R</code>’s functionality to explore it and visualize it in order to get an idea about the dataset!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the table look like?</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>samples</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Donor</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">SampleGroup</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">sex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">BSSE_QGF_204446</td>
+<td style="text-align: left;">HD276</td>
+<td style="text-align: left;">Trest</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSSE_QGF_204447</td>
+<td style="text-align: left;">HD276</td>
+<td style="text-align: left;">Ttumor</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSSE_QGF_204448</td>
+<td style="text-align: left;">HD276</td>
+<td style="text-align: left;">Teff</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSSE_QGF_204449</td>
+<td style="text-align: left;">HD276</td>
+<td style="text-align: left;">Tex</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSSE_QGF_204450</td>
+<td style="text-align: left;">HD280</td>
+<td style="text-align: left;">Trest</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSSE_QGF_204451</td>
+<td style="text-align: left;">HD280</td>
+<td style="text-align: left;">Ttumor</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSSE_QGF_204452</td>
+<td style="text-align: left;">HD280</td>
+<td style="text-align: left;">Teff</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSSE_QGF_204453</td>
+<td style="text-align: left;">HD280</td>
+<td style="text-align: left;">Tex</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSSE_QGF_204458</td>
+<td style="text-align: left;">HD286</td>
+<td style="text-align: left;">Trest</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSSE_QGF_204459</td>
+<td style="text-align: left;">HD286</td>
+<td style="text-align: left;">Ttumor</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSSE_QGF_204460</td>
+<td style="text-align: left;">HD286</td>
+<td style="text-align: left;">Teff</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSSE_QGF_204461</td>
+<td style="text-align: left;">HD286</td>
+<td style="text-align: left;">Tex</td>
+<td style="text-align: left;">Male</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSSE_QGF_204462</td>
+<td style="text-align: left;">HD287</td>
+<td style="text-align: left;">Trest</td>
+<td style="text-align: left;">Female</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSSE_QGF_204463</td>
+<td style="text-align: left;">HD287</td>
+<td style="text-align: left;">Ttumor</td>
+<td style="text-align: left;">Female</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BSSE_QGF_204464</td>
+<td style="text-align: left;">HD287</td>
+<td style="text-align: left;">Teff</td>
+<td style="text-align: left;">Female</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BSSE_QGF_204465</td>
+<td style="text-align: left;">HD287</td>
+<td style="text-align: left;">Tex</td>
+<td style="text-align: left;">Female</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the shape of this samples table?</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(samples)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16  3</code></pre>
+</div>
+</div>
+<p>In this case, this <code>samples</code> table has as many rows (16) as there are samples (which in turn is equal to the number of columns in the <code>counts</code> table), with columns containing different types of information related to each of the samples in the analysis.</p>
+<section id="making-graphs-and-figures-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="making-graphs-and-figures-in-r">Making graphs and figures in <code>R</code></h3>
+<p>We can take advantage of the way <code>R</code> handles tabular data to easily plot information and get a <strong>visual sense</strong> of the dataset. Exploring data in this way is very important, it allows us to detect flaws and weird effects in the data early on, so to avoid any misinterpretation which can greatly impact downstream analysis. For example, taking our <code>samples</code> table, we can ask whether <strong>covariates</strong> are balanced in the data or some categories are more/less represented than others.</p>
+<p>For example, let’s say we want to understand how many sample in our data come from patients with different genders!</p>
+<p>We can use <code>R</code>’s go-to plotting library called <code>ggplot2</code> to feed it the <code>samples</code> table and tell it what we want to plot and how.</p>
+<blockquote class="blockquote">
+<p>💡 when visualizing data, it is important to understand the variables we want to work with. Are we plotting <em>univariate</em> or <strong>bivariate</strong> data? Are we interested in <strong>continuous</strong> or <strong>categorical</strong> variables?</p>
+</blockquote>
+<p>Let’s first plot a barplot with gender information, then we’ll discuss a bit more about the code and <code>ggplot</code>’s <strong>grammar of graphics</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple and ugly</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(samples, <span class="fu">aes</span>(<span class="at">x=</span>sex)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day1_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s make a nicer one! Nice graphs convey information more easily and (most importantly) efficiently!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A bit more work but nicer and more intuitive</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(samples, <span class="fu">aes</span>(<span class="at">x=</span>sex, <span class="at">fill=</span>sex)) <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">'Female'</span><span class="ot">=</span><span class="st">'#FD96A9'</span>, <span class="st">'Male'</span><span class="ot">=</span><span class="st">'#BBCBCB'</span>)) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day1_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That’s better! The trick to <code>ggplot</code> is the ability to map variables to the <code>x</code> and <code>y</code> axes with the aesthetics function <code>aes()</code>. this is just the first layer, then from this we can build up our plot deciding what plot to draw (in this case a barplot hence <code>geom_bar()</code>) and further customize it.</p>
+<p>We can use the same approach to understand how experimental categories are distributed across our data. In a real-life scenario, we should already know this information because we were the ones designing the experiment in the first place, so we should know how many replicates we need!</p>
+<blockquote class="blockquote">
+<p>🚀 Try to draw a barplot showing the amount of sample that we have for each experimental condition in the data!</p>
+</blockquote>
+</section>
+</section>
+<section id="savingloading-files" class="level2">
+<h2 class="anchored" data-anchor-id="savingloading-files">Saving/Loading Files</h2>
+<p><strong>Let’s save this object with samples information in a file on this cloud session</strong>, this might be needed later if we end up in some trouble with the <code>R</code> session! This is a file format where columns are separated by commas. You might be familiar with this format if you have worked quite a bit in Excel. In <code>R</code>, we can save tabular data with the <code>write.table()</code> function specifying the location (the file name) we want. This is <strong>useful in the case our <code>R</code> session dies or we decide to interrupt it</strong>. In this case we will not have to run the whole analysis from the beginning and we can just source the file and load it!</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(samples, <span class="st">"samples_table.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can <strong>load the object back into the current session</strong> by using the following code line:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"samples_table.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p>💡 <strong>We will also repeat this procedure with the results of the differential expression analysis in order to avoid repeating work we have already done in case of any trouble!</strong></p>
+</blockquote>
+<p>Now that we have our objects correctly loaded, we can dive into the actual RNA-seq analysis.</p>
+</section>
+</section>
+<section id="recap" class="level1">
+<h1>Recap</h1>
+<p>We can summarize today’s class using an important set of questions to consider when you’ll be designing your own RNA-seq experiment:</p>
+<ol type="1">
+<li>How many replicates do I need?</li>
+<li>How can I minimize batch effect?</li>
+<li>How should I isolate RNA?</li>
+<li>Are RNA purity and quantity adequate?</li>
+<li>Which kind of RNA enrichment should I use?</li>
+<li>Do I need a stranded library preparation?</li>
+<li>What read length and depth should I use?</li>
+</ol>
+<p>Let’s also go through what we have seen so far:</p>
+<ul>
+<li>Got a broad understanding of what the term “<em>bioinformatics</em>” means</li>
+<li>Familiarized with the concept of computer programs and programming languages (like <code>R</code>)</li>
+<li>Got a refresh on the basic concepts behind the bulk RNA-seq workflow and its applications</li>
+<li>Initialized our <em>analysis environment</em> using Posit</li>
+<li>Familiarized a bit with the <code>R</code> interface</li>
+<li>Downloaded bulk RNA-seq data from CD8+ T cell subpopulations</li>
+<li>Learned the importance of exploring experimental metadata</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2026, Anna Grattagliano &amp; Mattia Toninelli</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
