@@ -553,7 +553,6 @@ head(up_df, 4) %>% kbl() %>% kable_styling()
 > 💡 
 > **How would you check if the dimensions of the tables we extracted correspond to the number of differentially expressed genes present in the summary we printed above? (hint: _go back and look at how we checked for the number of rows and columns in a table_)**
 
-
 # Recap
 Let's go through what we have seen so far:
 
