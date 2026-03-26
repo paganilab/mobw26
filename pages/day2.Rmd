@@ -553,6 +553,167 @@ head(up_df, 4) %>% kbl() %>% kable_styling()
 > 💡 
 > **How would you check if the dimensions of the tables we extracted correspond to the number of differentially expressed genes present in the summary we printed above? (hint: _go back and look at how we checked for the number of rows and columns in a table_)**
 
+### Visualizing Results With Volcano Plots
+
+Once we have our results from the comparison, we might want to **present them graphically to aid their interpretation by other people or to emphasize messages of interest within them** (like the statistics only for some genes of interest).
+One way to visualize results from a differential expression analysis is to draw a [**volcano plot**](https://en.wikipedia.org/wiki/Volcano_plot_(statistics)).
+The goal of a volcano plot is to display and summarize the main metrics of output from a differential expression analysis, these consist of **_P_-values** and **log-fold changes** associated with each gene in the dataset **for the specific comparison we are performing** (T~ex~ vs T~eff~ in our case).
+These two variables can be plotted together to get a feel for the overall results in the analysis.
+Let's plot a volcano summarizing the results of the comparison we have performed.
+
+```{r}
+library(tidyr)
+
+# Set the threshold just for visualization!
+log2FC_val = 1
+padj_val = 0.05
+
+# Create a table with gene information
+volcano_corr = as.data.frame(res) %>% mutate(names=rownames(res)) %>% drop_na()
+
+# Create a separate column in the table with the information needed to color point in three categories
+volcano_corr$threshold=ifelse(volcano_corr$logFC >= log2FC_val & volcano_corr$PValue < padj_val,"A",
+                         ifelse(volcano_corr$logFC <= -log2FC_val & volcano_corr$PValue < padj_val, "B","C"))
+
+# Plot!
+ggplot(volcano_corr, aes(x=logFC, y =-log10(PValue), color=threshold)) +
+    geom_point(alpha=0.9, size=3) +
+    scale_color_manual(values=c( "B"="#3891A6","A"="#C52233", "C"="grey")) + 
+    xlab("log2(Fold Change)") + ylab("-log10(adj p-value)") +
+    theme_minimal() +
+    geom_vline(xintercept=0, color='black') +
+    geom_hline(yintercept=0, color='black') +
+    theme(legend.position="none", axis.title.x = element_text(size = 17),
+                axis.text.y=element_text(size = 0),
+                axis.text.x=element_text(size = 17),
+               axis.title.y = element_text(size = 15)) 
+```
+
+### Mapping IDs to Gene Symbols
+
+The volcano plot above is **nice but it is not so informative since we cannot see any gene name**!
+Unfortunately we do not have recognizable gene names in the `res` object, as we can see below:
+
+```{r}
+# In this case gene names are the names of the rows of our table
+rownames(res)[1:20]
+```
+
+We can see that we currently have [Ensembl Gene IDs](https://www.ebi.ac.uk/training/online/courses/ensembl-browsing-genomes/navigating-ensembl/investigating-a-gene/) as opposed to **gene symbols**!
+We can fix this by **converting between the two, this can be achieved in R through dedicated packages like [`org.Hs.eg.db`](https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html)** which map between the two types of gene identifiers.
+Let's do it using the code below.
+
+```{r}
+# Use the package for the conversion between Ensembl IDs and Gene Symbols
+library(org.Hs.eg.db)
+
+volcano_corr$gene_names <- mapIds(org.Hs.eg.db, keys=row.names(volcano_corr), column="SYMBOL", keytype="ENSEMBL", multiVals="first")
+```
+
+We can check that **we now have new mapped gene symbols** that we can use to make our volcano plot informative!
+
+```{r}
+volcano_corr$gene_names[1:40] 
+```
+
+And finally we can try to plot again our volcano with the addition of gene names!
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show code"
+
+library(ggrepel)
+
+volcano_corr <- volcano_corr[order(volcano_corr$PValue, decreasing = FALSE),] %>% drop_na()
+
+names_list <- c(volcano_corr$gene_names[1:10], "TOX", "ENTPD1", "HAVCR2")
+
+neg_fc <- volcano_corr[order(volcano_corr$logFC, decreasing = TRUE),] %>% filter(PValue < 0.05 ) %>% .$gene_names %>% head(10) # Change these numbers to avoid overcrowding in the plot
+pos_fc <- volcano_corr[order(volcano_corr$logFC, decreasing = FALSE),] %>% filter(PValue < 0.05) %>% .$gene_names %>% head(10)
+
+names_list <- c(names_list, neg_fc, pos_fc)
+  
+volcano_corr <- volcano_corr %>% mutate(., stroke = ifelse(.$gene_names %in% names_list & volcano_corr$PValue < padj_val & volcano_corr$logFC > log2FC_val, 2, 0), 
+                                               names=ifelse(.$gene_names %in% names_list,'mark','leave')) %>%
+                                                    .[order(.$names),]
+
+ggplot(volcano_corr, aes(x=logFC, y =-log10(PValue), color=threshold)) +
+    geom_point(alpha=0.9, size=3) +
+    scale_color_manual(values=c( "B"="#3891A6","A"="#C52233", "C"="grey")) + 
+    xlab("log2(Fold Change)") + ylab("-log10(adj p-value)") +
+    theme_minimal() +
+    geom_vline(xintercept=0, color='black') +
+    geom_hline(yintercept=0, color='black') +
+    theme(legend.position="none", axis.title.x = element_text(size = 17),
+                axis.text.y=element_text(size = 0),
+                axis.text.x=element_text(size = 17),
+               axis.title.y = element_text(size = 15)) +
+    geom_label_repel(data=volcano_corr[which(volcano_corr$names=='mark' & volcano_corr$threshold=='A'),], aes(label=gene_names), max.overlaps = 30, color='black', size=4, fill='white', fontface='italic') +
+    geom_label_repel(data=volcano_corr[which(volcano_corr$names=='mark' & volcano_corr$threshold=='B'),], aes(label=gene_names), max.overlaps = 30, color='black', size=4, fill='white', fontface='italic')
+
+```
+
+### Visualizing Results With Heatmaps
+
+We can also **plot differentially expressed genes in the two conditions of our interest using heatmaps**.
+In this case we select genes based on their significance and visualize how their expression values change across samples just like we have done earlier.
+
+```{r}
+# Select conditions to plot, since we are plotting differentially expressed genes, we need to select the two categories in the comparison
+conds <- c("Tex","Teff")
+
+# Take genes
+diffs <- rbind(volcano_corr[volcano_corr$threshold == "A",], volcano_corr[volcano_corr$threshold == "B",])$gene_names
+
+# Extract counts from `dds` object
+mtx <- cpm(dds)[,rownames(samples[which(samples$SampleGroup %in% conds),])]
+
+# Subset for differential genes 
+ids <- rownames(volcano_corr[which(volcano_corr$gene_names %in% diffs),])
+
+# Subset matrix for genes of interest
+mtx <- mtx[ids,]
+
+# Create another table for annotating the heatmap with colors
+df <- as.data.frame(samples[,c("Donor","SampleGroup")])
+
+# Plot with pheatmap
+pheatmap(mtx, cluster_rows=TRUE, show_rownames=FALSE,
+         cluster_cols=TRUE, annotation_col=df[which(rownames(df) %in% colnames(mtx)),], scale = "row")
+```
+
+Given that the number of differentially expressed genes can sometimes be very high, **we cannot pretend to explore them manually one by one understanding their function**!
+As we will see, there are further downstream analyses we can perform to get a sense of ***trends*** and ***pathways*** activated in the cell type of our interest.
+These analyses which look at genes in groups or **ontologies** try to match conditions with functions, to better elucidate what is going on inside cells in a specific condition.
+
+### Plot single genes across samples
+Here we can plot the expression values of single genes to directly inspect the results of the differential gene expression analysis. Since we are dealing with multiple samples for which a measurement of gene expression has been performed, we are plotting each sample colored by its original category to understand the trends that we detect from the global differential gene expression analysis!
+
+```{r}
+# Select a set of genes to plot
+gnames_to_plot <- c("CD8A", # Should not differ
+                    "TOX", # Previously associated with T cell exhaustion
+                    "GNLY", # Previously associated to T effector function
+                    "IL7R" # Previously associated to T memory function
+                    ) 
+
+# Plot as a grouped boxplot with jittering
+pldf <- cpm(dds, log=TRUE)[rownames(volcano_corr[which(volcano_corr$gene_names %in% gnames_to_plot),]),] %>% t() %>% as.data.frame() 
+colnames(pldf) <- gnames_to_plot
+pldf %>% merge(samples, by=0) %>% 
+            reshape2::melt() %>% 
+            ggplot(., aes(x=SampleGroup, y=value)) + 
+            geom_boxplot(fill="lightgray") + 
+            geom_jitter(aes(color=SampleGroup), size=3, alpha=0.7) +
+            scale_color_brewer(palette = 'RdYlBu') + 
+            facet_wrap(~variable) + 
+            theme_minimal()
+```
+
+> 💡  Can we check the expression of one of the genes highlighted in the conclusions of the original paper?
+
+> 🤔  What if we want to plot the two most differentially expressed genes in both directions (both up and down)? _hint_: catch their names from the `volcano_corr` table by ordering it on fold-change with the `%>% arrange()` function
+
 # Recap
 Let's go through what we have seen so far:
 
