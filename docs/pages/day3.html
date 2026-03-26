@@ -153,6 +153,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Day 2</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link active" href="../pages/day3.html" aria-current="page"> 
+<span class="menu-text">Day 3</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../pages/help.html"> 
 <span class="menu-text">Help</span></a>
   </li>  
@@ -184,7 +188,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#further-downstream-analyses" id="toc-further-downstream-analyses" class="nav-link active" data-scroll-target="#further-downstream-analyses">Further Downstream Analyses</a>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#further-downstream-analyses" id="toc-further-downstream-analyses" class="nav-link" data-scroll-target="#further-downstream-analyses">Further Downstream Analyses</a>
   <ul class="collapse">
   <li><a href="#gsea" id="toc-gsea" class="nav-link" data-scroll-target="#gsea">GSEA</a></li>
   <li><a href="#gene-ontology-enrichment-analysis" id="toc-gene-ontology-enrichment-analysis" class="nav-link" data-scroll-target="#gene-ontology-enrichment-analysis">Gene Ontology Enrichment Analysis</a></li>
@@ -217,6 +222,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li><em>Learn about further downstream analyses of bulk RNA-seq data</em></li>
+<li><em>Explore Gene Set Enrichment Analysis (GSEA)</em></li>
+<li><em>Perform GSEA on gene sets of interest</em></li>
+<li><em>Check unsupervised Gene Ontologies (GO) on differentially-expressed genes</em></li>
+<li><em>Visualize GO Enrichment results</em></li>
+<li><em>Learn about gene-gene relationships and build a full Gene Regulatory Network (GRN)</em></li>
+</ul>
+</section>
 <section id="further-downstream-analyses" class="level2">
 <h2 class="anchored" data-anchor-id="further-downstream-analyses">Further Downstream Analyses</h2>
 <p>Once we have our differentially expressed genes, we can <strong>perform various downstream analyses to check the functional aspects of the group of genes which are up- or down-regulated</strong> in our condition of interest. In the following sections, we will go through two of these, <strong>Gene Set Enrichment Analysis</strong> (GSEA) and <strong>Gene Ontology Enrichment Analysis</strong> (GO).</p>
@@ -227,15 +243,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="https://www.pnas.org/cms/10.1073/pnas.0506580102/asset/c5e213a9-4247-4506-bae4-908054152f97/assets/graphic/zpq0370595180001.jpeg" width="500"></p>
 <p><em>GSEA needs two ingredients, a <strong>ranked</strong> gene list from our analysis (for instance genes ordered by log-fold change) and a list of genes with biological relevance (for instance genes known to regulate CD8+ T-cell exhaustion).</em></p>
 </center>
-<p><strong>1.</strong> We start by taking our <strong>list of up- or down- regulated genes</strong> and <strong>order them based on the value of their <em>fold-change</em></strong> so that our list will have genes that change a lot positively at the top and ones that change a lot negatively at the bottom. This will represent our <strong>ranking</strong>.</p>
+<p><strong>1.</strong> We start by taking our <strong>genes</strong> from our <code>res</code> data table and <strong>order (rank) them based on the value of their <em>fold-change</em></strong> so that strongly up-regulated genes will be at the top of our list and strongly down-regulated genes at the bottom. This will represent our <strong>ranking</strong>.</p>
 <p><strong>2.</strong> We then <strong>take one or more curated and archived <em>gene sets</em> which are related to a biological function</strong> we might be interested in investigating in our dataset.</p>
-<p><strong>3.</strong> Finally we <strong>go through our ranking</strong> from top to bottom <strong>counting the number of times we see a gene which is also in the <em>gene set</em> that we are looking at</strong>. We expect to see genes from a given <strong>gene set</strong> appear at the top of our ranking if that biological function is particularly important in the genes of our ranking.</p>
+<p><strong>3.</strong> Finally we <strong>go through our ranking</strong> from top to bottom <strong>counting the number of times we see a gene which is also in the <em>gene set</em> that we are looking at</strong>. Each time we encounter a gene in the geneset of our interest we increase the <em>running score</em> (ES) whereas if the gene is not present in the geneset, we decrease the score. We expect to see genes from a given <strong>gene set</strong> appear at the top of our ranking if that biological function is particularly important in the genes of our ranking.</p>
 <p>Over the years, a collection of curated gene sets called <strong><a href="https://www.gsea-msigdb.org/gsea/msigdb/">MSigDB</a></strong> has been expanded and is now a <strong>great resource</strong> to check which ones are more or less enriched in our data at hand.</p>
 <center>
 <p><img src="../pics/msigdb_screenshot.png" width="700"></p>
 <p><em>The web interface for the MSigDB gene set database</em></p>
 </center>
-<p>In our specific use case, <strong>we are going to run GSEA on the set of up-regulated genes in CD8+ T<sub>ex</sub> cells to check if a gene set of exhaustion is indeed enriched in the genes we have found up-regulated</strong>. For this task we are going to use the <code>fgsea</code> package. In order to extract the gene set without the need to directly download it, we are going to <strong>access MSigDB directly from <code>R</code></strong> using another package called <code>msigdbr</code>.</p>
+<p>In our specific use case, <strong>we are going to run GSEA on the set of genes in CD8+ T<sub>ex</sub> cells to check if a gene set of exhaustion is indeed enriched in the genes we have found up-regulated</strong>. For this task we are going to use the <code>fgsea</code> package. In order to extract the gene set without the need to directly download it, we are going to <strong>access MSigDB directly from <code>R</code></strong> using another package called <code>msigdbr</code>.</p>
 <blockquote class="blockquote">
 <p>🚨 <strong>WARNING</strong>: This code that follows might kill your <code>R</code> session inadvertedly. If this happens, don’t panic, and reload the object we saved before! Use the following syntax to get back on track after you resume the session:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> res <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"results.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
@@ -741,6 +757,7 @@ Show result
 <li>Managed to extract differentially-expressed genes</li>
 <li>Visualized the results in different ways, with each having its own strengths and weaknesses</li>
 <li>Interpreted the results with the help of downstream analysis including GSEA and Gene Ontology (GO)</li>
+<li>Created a gene-regulatory network (GRN) and used graphs to display them</li>
 </ul>
 </section>
 <section id="take-home-messages" class="level1">
@@ -750,7 +767,7 @@ Show result
 <li><p><strong>Design your experiments carefully</strong> with data analysis in mind!</p></li>
 <li><p><strong>Data needs to be carefully explored</strong> to avoid systematic errors in the analyses!</p></li>
 <li><p><strong>Plot and Visualize</strong> as much as possible!</p></li>
-<li><p>Not all information is useful, remeber that <strong>it all depends on the biological question</strong>!</p></li>
+<li><p>Not all information is useful, remember that <strong>it all depends on the biological question</strong>!</p></li>
 <li><p>Omics outputs are immensely rich and <strong>one experiment can be used to answer a plethora of questions</strong>!</p></li>
 </ul>
 <center>

@@ -48,6 +48,14 @@ down_df <- res %>% as.data.frame() %>% filter(PValue < 0.05 & logFC < -1)
 
 ```
 
+## Objectives
+- _Learn about further downstream analyses of bulk RNA-seq data_
+- _Explore Gene Set Enrichment Analysis (GSEA)_
+- _Perform GSEA on gene sets of interest_
+- _Check unsupervised Gene Ontologies (GO) on differentially-expressed genes_
+- _Visualize GO Enrichment results_
+- _Learn about gene-gene relationships and build a full Gene Regulatory Network (GRN)_
+
 ## Further Downstream Analyses
 
 Once we have our differentially expressed genes, we can **perform various downstream analyses to check the functional aspects of the group of genes which are up- or down-regulated** in our condition of interest.
@@ -67,12 +75,12 @@ _GSEA needs two ingredients, a **ranked** gene list from our analysis (for insta
 
 </center>
 
-**1.**  We start by taking our **list of up- or down- regulated genes** and **order them based on the value of their _fold-change_** so that our list will have genes that change a lot positively at the top and ones that change a lot negatively at the bottom.
+**1.**  We start by taking our  **genes** from our `res` data table and **order (rank) them based on the value of their _fold-change_** so that strongly up-regulated genes will be at the top of our list and strongly down-regulated genes at the bottom.
     This will represent our **ranking**.
 
 **2.**  We then **take one or more curated and archived _gene sets_ which are related to a biological function** we might be interested in investigating in our dataset.
 
-**3.**  Finally we **go through our ranking** from top to bottom **counting the number of times we see a gene which is also in the _gene set_ that we are looking at**.
+**3.**  Finally we **go through our ranking** from top to bottom **counting the number of times we see a gene which is also in the _gene set_ that we are looking at**. Each time we encounter a gene in the geneset of our interest we increase the _running score_ (ES) whereas if the gene is not present in the geneset, we decrease the score.
     We expect to see genes from a given **gene set** appear at the top of our ranking if that biological function is particularly important in the genes of our ranking.
 
 Over the years, a collection of curated gene sets called **[MSigDB](https://www.gsea-msigdb.org/gsea/msigdb/)** has been expanded and is now a **great resource** to check which ones are more or less enriched in our data at hand.
@@ -85,7 +93,7 @@ _The web interface for the MSigDB gene set database_
 
 </center>
 
-In our specific use case, **we are going to run GSEA on the set of up-regulated genes in CD8+ T~ex~ cells to check if a gene set of exhaustion is indeed enriched in the genes we have found up-regulated**.
+In our specific use case, **we are going to run GSEA on the set of genes in CD8+ T~ex~ cells to check if a gene set of exhaustion is indeed enriched in the genes we have found up-regulated**.
 For this task we are going to use the `fgsea` package.
 In order to extract the gene set without the need to directly download it, we are going to **access MSigDB directly from `R`** using another package called `msigdbr`.
 
@@ -344,6 +352,7 @@ Let's go through what we have seen today:
 - Managed to extract differentially-expressed genes
 - Visualized the results in different ways, with each having its own strengths and weaknesses
 - Interpreted the results with the help of downstream analysis including GSEA and Gene Ontology (GO)
+- Created a gene-regulatory network (GRN) and used graphs to display them
 
 # Take-home Messages 🏠
 Congratulations! You got the end of the course and now hopefully **know the main steps of a bulk RNA-seq data analysis workflow**!
@@ -355,10 +364,9 @@ Some of the _key concepts_ that we have explored during the course can enable us
 
 - **Plot and Visualize** as much as possible!
 
-- Not all information is useful, remeber that **it all depends on the biological question**!
+- Not all information is useful, remember that **it all depends on the biological question**!
 
 - Omics outputs are immensely rich and **one experiment can be used to answer a plethora of questions**!
-
 
 <center>
 
